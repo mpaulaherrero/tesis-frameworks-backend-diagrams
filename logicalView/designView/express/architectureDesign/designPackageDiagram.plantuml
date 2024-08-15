@@ -39,7 +39,7 @@ package node_modules{
 
 serverJS .d.> appJS
 
-appJS .l.> router
+appJS .d.> router
 appJS .[hidden].> db
 appJS ..> morgan
 appJS ..> cookieParser
