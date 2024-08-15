@@ -1,9 +1,9 @@
 @startuml
 skinparam style strictuml
-
-class "server.js" as serverJS
+allow_mixing
 
 package app {
+    class "server.js" as serverJS
     class "app.js" as appJS
     package router {}
     package middleware{}
@@ -24,22 +24,22 @@ package public{
 }
 
 package node_modules{
-    package express{}
-    package multer{}
-    package path{}
-    package nodemailer{}
-    package jsonwebtoken{}
-    package bcrypt{}
-    package morgan{}
-    package "cookie-parser" as cookieParser{}
-    package pg{}
-    package dotenv{}
-    package pug{}
+    component express
+    component multer
+    component path
+    component nodemailer
+    component jsonwebtoken
+    component bcrypt
+    component morgan
+    component [cookie-parser] as cookieParser
+    component pg
+    component dotenv
+    component pug
 }
 
 serverJS .d.> appJS
 
-appJS ..> router
+appJS .l.> router
 appJS .[hidden].> db
 appJS ..> morgan
 appJS ..> cookieParser
