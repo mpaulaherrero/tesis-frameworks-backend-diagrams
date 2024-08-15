@@ -1,0 +1,70 @@
+@startuml
+skinparam style strictuml
+left to right direction
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Registered\nUser" as UserReg
+
+boundary LoginView
+boundary "Recovery\nPasswordView" as RecoveryPasswordView
+boundary "LandingPage\nView" as LandingPageView
+boundary "Publication\nDetailView" as PublicationDetailView
+boundary ProfileView
+
+entity User
+entity Publication
+entity Comment
+
+control "UserLogin\nController" as UserLoginController
+control "UserRecover\nPasswordController" as UserRecoverPasswordController
+control "Logout\nController" as LogoutController
+control "ListPublication\nController" as ListPublicationController
+control "CreatePublication\nController" as CreatePublicationController
+control "ShowPublication\nController" as ShowPublicationController
+control "EditPublication\nController" as EditPublicationController
+control "DeletePublication\nController" as DeletePublicationController
+control "CreateComment\nController" as CreateCommentController
+control "ListComment\nController" as ListCommentController
+control "EditComment\nController" as EditCommentController
+control "DeleteComment\nController" as DeleteCommentController
+control "ViewProfile\nController" as ViewProfileController
+control "EditProfile\nController" as EditProfileController
+
+UserReg --> LoginView
+UserReg --> RecoveryPasswordView
+UserReg --> LandingPageView
+UserReg --> PublicationDetailView
+UserReg --> ProfileView
+
+LoginView --> UserLoginController
+RecoveryPasswordView --> UserRecoverPasswordController
+LandingPageView --> LogoutController
+LandingPageView --> ListPublicationController
+LandingPageView --> CreatePublicationController
+LandingPageView --> ShowPublicationController
+PublicationDetailView --> EditPublicationController
+PublicationDetailView --> DeletePublicationController
+PublicationDetailView --> CreateCommentController
+PublicationDetailView --> ListCommentController
+PublicationDetailView --> EditCommentController
+PublicationDetailView --> DeleteCommentController
+ProfileView --> ViewProfileController
+ProfileView --> EditProfileController
+
+UserLoginController --> User
+UserRecoverPasswordController --> User
+ListPublicationController --> User
+ListPublicationController --> Publication
+CreatePublicationController --> Publication
+ShowPublicationController --> Publication
+EditPublicationController --> Publication
+DeletePublicationController --> Publication
+CreateCommentController --> Comment
+ListCommentController --> Comment
+EditCommentController --> Comment
+DeleteCommentController --> Comment
+ViewProfileController --> User
+EditProfileController --> User
+
+@enduml

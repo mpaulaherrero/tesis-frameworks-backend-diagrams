@@ -1,0 +1,16 @@
+@startuml
+skinparam style strictuml
+left to right direction
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Registered\nUser" as UserReg
+
+boundary "LandingPage\nView" as LandingPageView
+entity Publication
+control "CreatePublication\nController" as CreatePublicationController
+
+UserReg --> LandingPageView
+LandingPageView --> CreatePublicationController
+CreatePublicationController --> Publication
+@enduml

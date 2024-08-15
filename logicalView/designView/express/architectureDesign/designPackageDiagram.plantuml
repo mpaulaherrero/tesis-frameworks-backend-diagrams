@@ -1,0 +1,90 @@
+@startuml
+skinparam style strictuml
+
+class "server.js" as serverJS
+
+package app {
+    class "app.js" as appJS
+    package router {}
+    package middleware{}
+    package controllers{}
+    package models{}
+    package services{}
+    package db{}
+}
+
+package public{
+    package css{}
+    package img{}
+    package js{}
+    package view{
+        package layout{}
+        package page{}
+    }
+}
+
+package node_modules{
+    package express{}
+    package multer{}
+    package path{}
+    package nodemailer{}
+    package jsonwebtoken{}
+    package bcrypt{}
+    package morgan{}
+    package "cookie-parser" as cookieParser{}
+    package pg{}
+    package dotenv{}
+    package pug{}
+}
+
+serverJS .d.> appJS
+
+appJS ..> router
+appJS .[hidden].> db
+appJS ..> morgan
+appJS ..> cookieParser
+appJS ..> express
+appJS ..> dotenv
+appJS ..> pug
+appJS .[hidden]left.> public.view
+
+router .left.> public.view
+router ..> express
+router ..> middleware
+router ..> controllers
+router ..> models
+
+middleware ..> multer
+middleware ..> path
+middleware ..> jsonwebtoken
+middleware .left.> public.view
+
+controllers ..> services
+
+services ..> models
+services ..> nodemailer
+services ..> jsonwebtoken
+services ..> bcrypt
+services ..> view
+
+models ..> db
+db .right.> pg
+
+view .[hidden]down.> css
+css .[hidden]left.> img
+img .[hidden]left.> js
+
+express .[hidden]left.> morgan
+morgan .[hidden]left.> cookieParser
+cookieParser .[hidden]left.> dotenv
+dotenv .[hidden]left.> pug
+
+express .[hidden]down.> path
+multer .[hidden]left.> path
+
+multer .[hidden]down.> bcrypt
+bcrypt .[hidden]left.> nodemailer
+nodemailer .[hidden]left.> jsonwebtoken
+
+nodemailer .[hidden]down.> pg
+@enduml

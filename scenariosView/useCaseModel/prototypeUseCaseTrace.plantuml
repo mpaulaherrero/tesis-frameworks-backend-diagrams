@@ -1,0 +1,86 @@
+@startuml prototypeTrace
+left to right direction
+skinparam padding 10
+skinparam rectangle {
+    BackgroundColor #ddd
+}
+
+rectangle "Landing page" as home <<screen>>
+rectangle "Crear/Editar publicacion" as createEditPublication <<screen>>
+rectangle "Detalle de publicacion" as readPublication <<screen>>
+rectangle "Registro" as register <<screen>>
+rectangle "Inicio de sesion" as login <<screen>>
+rectangle "Perfil de usuario" as userProfile <<screen>>
+rectangle "Recuperar contraseña" as recoverPassword <<screen>>
+rectangle "Restaurar contraseña" as resetPassword <<screen>>
+rectangle "Administración" as adminPage <<screen>>
+
+
+usecase "Registrar usuario" as UC1
+usecase "Iniciar Sesión" as UC2
+usecase "Cerrar Sesión" as UC3
+usecase "Recuperar contraseña" as UC4
+usecase "Ver perfil" as UC5
+usecase "Editar perfil" as UC6
+
+usecase "Crear Publicación" as UC7
+usecase "Listar publicaciones" as UC8
+usecase "Editar publicación" as UC9
+
+usecase "Crear comentario" as UC10
+usecase "Listar comentarios" as UC11
+usecase "Editar comentario" as UC12
+usecase "Eliminar comentario" as UC13
+
+usecase "Ver publicación" as UC14
+
+usecase "Visualizar estadísticas" as UC15
+usecase "Ver usuario" as UC16
+usecase "Editar usuario" as UC17
+usecase "Bloquear usuario" as UC18
+usecase "Eliminar usuario" as UC19
+usecase "Bloquear publicación" as UC20
+usecase "Eliminar publicación" as UC21
+
+
+UC1 <.. register: <<trace>>
+
+UC2 <.. login: <<trace>>
+UC4 <.. login: <<trace>>
+
+UC4 <.. recoverPassword: <<trace>>
+UC4 <.. resetPassword: <<trace>>
+
+UC3 <.. home: <<trace>>
+UC5 <... home: <<trace>>
+UC8 <... home: <<trace>>
+UC7 <... home: <<trace>>
+
+UC3 <... userProfile: <<trace>>
+UC4 <... userProfile: <<trace>>
+UC5 <... userProfile: <<trace>>
+UC6 <... userProfile: <<trace>>
+
+UC3 <... createEditPublication: <<trace>>
+UC5 <... createEditPublication: <<trace>>
+UC7 <... createEditPublication: <<trace>>
+
+UC3 <... readPublication: <<trace>>
+UC5 <... readPublication: <<trace>>
+UC14 <... readPublication: <<trace>>
+UC9 <... readPublication: <<trace>>
+UC10 <... readPublication: <<trace>>
+UC11 <... readPublication: <<trace>>
+UC12 <... readPublication: <<trace>>
+UC13 <... readPublication: <<trace>>
+
+UC15 <... adminPage: <<trace>>
+UC16 <... adminPage: <<trace>>
+UC17 <... adminPage: <<trace>>
+UC18 <... adminPage: <<trace>>
+UC19 <... adminPage: <<trace>>
+UC20 <... adminPage: <<trace>>
+UC21 <... adminPage: <<trace>>
+
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+skinparam style strictuml
+
+package Views {}
+package Controllers{}
+package Models{}
+
+Views ..> Controllers
+Controllers ..> Models
+
+@enduml

@@ -1,0 +1,57 @@
+@startuml baseApp
+skinparam style strictuml
+left to right direction
+
+actor "Usuario administrador" as Admin
+actor "Usuario Registrado" as User
+actor "Usuario no registrado" as Anonymous
+
+rectangle "Aplicación Base" {
+usecase "Registrar usuario" as UC1
+usecase "Iniciar Sesión" as UC2
+usecase "Cerrar Sesión" as UC3
+usecase "Recuperar contraseña" as UC4
+usecase "Ver perfil" as UC5
+usecase "Editar perfil" as UC6
+usecase "Crear Publicación" as UC7
+usecase "Listar publicaciones" as UC8
+usecase "Editar publicación" as UC9
+usecase "Crear comentario" as UC10
+usecase "Listar comentarios" as UC11
+usecase "Editar comentario" as UC12
+usecase "Eliminar comentario" as UC13
+usecase "Ver publicación" as UC14
+usecase "Visualizar estadísticas" as UC15
+usecase "Ver usuario" as UC16
+usecase "Editar usuario" as UC17
+usecase "Bloquear usuario" as UC18
+usecase "Eliminar usuario" as UC19
+usecase "Bloquear publicación" as UC20
+usecase "Eliminar publicación" as UC21
+}
+
+Anonymous -- UC1
+Anonymous -- UC8
+Anonymous -- UC11
+Anonymous -- UC12
+Anonymous -- UC13
+Anonymous -- UC14
+
+User -- UC2
+User -- UC3
+User -- UC4
+User -- UC5
+User -- UC6
+User -- UC7
+User -- UC8
+User -- UC9
+User -- UC10
+
+Admin -- UC15
+Admin -- UC16
+Admin -- UC17
+Admin -- UC18
+Admin -- UC19
+Admin -- UC20
+Admin -- UC21
+@enduml

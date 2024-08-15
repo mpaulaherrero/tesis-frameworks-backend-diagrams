@@ -1,0 +1,38 @@
+@startuml
+skinparam style strictuml
+left to right direction
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Unregistered\nUser" as UserUnReg
+
+boundary "Publication\nDetailView" as PublicationDetailView
+boundary "LandingPage\nView" as LandingPageView
+boundary RegisterView
+
+entity User
+entity Publication
+entity Comment
+
+control "ListComment\nController" as ListCommentController
+control "ShowPublication\nController" as ShowPublicationController
+control "ListPublication\nController" as ListPublicationController
+control "UserRegister\nController" as UserRegisterController
+
+
+UserUnReg --> PublicationDetailView
+UserUnReg --> RegisterView
+UserUnReg --> LandingPageView
+
+PublicationDetailView --> ListCommentController
+PublicationDetailView --> ShowPublicationController
+LandingPageView --> ListPublicationController
+RegisterView --> UserRegisterController
+
+ListCommentController --> Comment
+ShowPublicationController --> Publication
+ListPublicationController --> Publication
+ListPublicationController --> User
+UserRegisterController --> User
+
+@enduml

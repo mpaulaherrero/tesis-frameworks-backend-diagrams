@@ -1,0 +1,45 @@
+@startuml
+skinparam style strictuml
+left to right direction
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Admin\nUser" as Admin
+
+boundary AdminPageView
+
+entity User
+entity Publication
+
+control "ViewStatistics\nController" as ViewStatisticsController
+control "ViewUser\nController" as ViewUserController
+control "EditUser\nController" as EditUserController
+control "BlockUser\nController" as BlockUserController
+control "DeleteUser\nController" as DeleteUserController
+control "SearchUser\nController" as SearchUserController
+control "BlockPost\nController" as BlockPostController
+control "DeletePost\nController" as DeletePostController
+
+Admin --> AdminPageView
+
+AdminPageView --> ViewStatisticsController
+AdminPageView --> ViewUserController
+AdminPageView --> EditUserController
+AdminPageView --> BlockUserController
+AdminPageView --> DeleteUserController
+AdminPageView --> SearchUserController
+AdminPageView --> BlockPostController
+AdminPageView --> DeletePostController
+
+ViewStatisticsController  --> User
+ViewUserController  --> User
+EditUserController  --> User
+BlockUserController  --> User
+DeleteUserController  --> User
+SearchUserController  --> User
+
+ViewStatisticsController --> Publication
+BlockPostController  --> Publication
+DeletePostController  --> Publication
+
+@enduml

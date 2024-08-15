@@ -1,0 +1,98 @@
+Diagrama de clases de análisis. Usuario administrador
+
+AdminPageView
+
+User
+Publication
+
+ViewUserController
+EditUserController
+
+BlockUserController
+DeleteUserController
+SearchUserController
+
+ViewStatisticsController
+BlockPostController
+DeletePostController
+
+----
+
+Notas: 
+	en AdminPageView no veo como se buscan usuario
+	Faltan los controladores para: 
+		SearchPublicationController
+		
+	Controlador que no va según prototipo:	
+		EditPublicationController
+		ViewUserController
+		EditUserController
+
+----
+
+Diagrama de clases de análisis. Usuario no registrado
+
+Unregistered user
+
+PublicationDetailView
+LandingPageView
+RegisterView
+
+Comment
+User
+Publication
+
+ListCommentController
+ShowPublicationController
+ListPublicationsController
+UserRegisterControlle - el nombre esta alreves, verbo primero
+
+Diagrama de clases de análisis. Usuario registrado
+
+Registered user
+
+
+Login View
+RecoverPasswordView
+LandingPageView
+PublicationDetailView - falta el view en el nombre
+ProfileView
+
+User
+Publication
+Comment
+
+
+UserLoginController
+UserRecoverPasswordController
+LogOutController
+ListPublicationsController
+CreatePublicationController
+ShowPublicationController
+EditPublicationController
+DeletePublicationController
+CreateCommentController
+EditCommentController
+ListCommentController
+EliminateCommentController - es delete, eliminate suena raro
+ViewProfileController
+EditProfileController
+
+Diagrama de Paquetes de Análisis
+
+Controllers
+Models
+View
+
+Hacer diagrama de trazas de patallas, ver clase de RUP de IS
+Hacer diagrama de clase de diseño con traza a análisis 
+
+
+
+
+
+
+
+
+
+
