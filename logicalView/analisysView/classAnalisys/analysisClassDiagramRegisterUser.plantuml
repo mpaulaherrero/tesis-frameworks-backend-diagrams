@@ -43,6 +43,7 @@ LandingPageView --> LogoutController
 LandingPageView --> ListPublicationController
 LandingPageView --> CreatePublicationController
 LandingPageView --> ShowPublicationController
+PublicationDetailView --> CreatePublicationController
 PublicationDetailView --> EditPublicationController
 PublicationDetailView --> DeletePublicationController
 PublicationDetailView --> CreateCommentController
