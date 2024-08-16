@@ -6,11 +6,11 @@ skinparam defaultFontSize 11
 
 actor "Registered\nUser" as UserReg
 
-boundary "LandingPage\nView" as LandingPageView
+boundary "Publication\nDetailView" as PublicationDetailView
 entity Publication
 control "CreatePublication\nController" as CreatePublicationController
 
-UserReg --> LandingPageView
-LandingPageView --> CreatePublicationController
+UserReg --> PublicationDetailView
+PublicationDetailView --> CreatePublicationController
 CreatePublicationController --> Publication
 @enduml
