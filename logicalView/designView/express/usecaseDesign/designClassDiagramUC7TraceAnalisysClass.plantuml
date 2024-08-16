@@ -1,0 +1,46 @@
+@startuml
+skinparam style strictuml
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+package Analysis{
+    boundary "Publication\nDetailView" as PublicationDetailViewAnalysis
+    entity "Publication" as PublicationAnalysis
+    control "CreatePublication\nController" as CreatePublicationControllerAnalysis
+}
+
+package Design{
+    package backend {
+        boundary "Publication" as PublicationDetailView << PUB >>
+        control "PublicationController\nCreatePublication" as CreatePublicationController
+        control Router
+        control auth << middleware >>
+        control "upload.single" as uploadSingle << middleware >>
+        entity PublicationModel
+    }
+    package frontend {
+        boundary "Publication" as PublicationHtml << HTML >>
+    }
+}
+
+PublicationDetailViewAnalysis --> CreatePublicationControllerAnalysis
+CreatePublicationControllerAnalysis --> PublicationAnalysis
+
+PublicationHtml .d.> Router
+Router -> auth
+Router -d-> uploadSingle
+Router -d-> CreatePublicationController
+CreatePublicationController -d-> PublicationDetailView
+CreatePublicationController -d-> PublicationModel
+
+PublicationDetailViewAnalysis .[#green].> PublicationHtml : <font color=green><<trace>></font>
+PublicationDetailViewAnalysis .[#green].> PublicationDetailView : <font color=green><<trace>></font>
+
+CreatePublicationControllerAnalysis .[#coral].> Router : <font color=coral><<trace>></font>
+CreatePublicationControllerAnalysis .[#coral].> CreatePublicationController : <font color=coral><<trace>></font>
+CreatePublicationControllerAnalysis .[#coral].> auth : <font color=coral><<trace>></font>
+CreatePublicationControllerAnalysis .[#coral].> uploadSingle : <font color=coral><<trace>></font>
+
+PublicationAnalysis .[#green].> PublicationModel : <font color=green><<trace>></font>
+
+@enduml

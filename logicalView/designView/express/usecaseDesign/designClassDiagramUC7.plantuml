@@ -1,0 +1,30 @@
+@startuml
+skinparam style strictuml
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Registered\nUser" as UserReg
+
+' This is a comment on a single line
+package backend {
+    boundary "Publication" as PublicationDetailView << PUB >>
+    control "PublicationController\nCreatePublication" as CreatePublicationController
+    control Router
+    control auth << middleware >>
+    control "upload.single" as uploadSingle << middleware >>
+    entity PublicationModel
+}
+
+package frontend {
+    boundary "Publication" as PublicationHtml << HTML >>
+}
+
+UserReg .r.> PublicationHtml
+PublicationHtml .r.> Router
+Router -> auth
+Router -d-> uploadSingle
+Router -d-> CreatePublicationController
+CreatePublicationController -d-> PublicationDetailView
+CreatePublicationController -d-> PublicationModel
+
+@enduml
