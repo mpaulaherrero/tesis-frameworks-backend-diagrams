@@ -52,6 +52,6 @@ CreatePublicationControllerAnalysis .[#coral].> auth : <font color=coral><<trace
 CreatePublicationControllerAnalysis .[#coral].> uploadSingle : <font color=coral><<trace>></font>
 CreatePublicationControllerAnalysis .[#coral].> script : <font color=coral><<trace>></font>
 
-PublicationAnalysis .[#blue].> PublicationModel : <font color=blue><<trace>></font>
+PublicationAnalysis .[#3cdfff].> PublicationModel : <font color=3cdfff><<trace>></font>
 
 @enduml

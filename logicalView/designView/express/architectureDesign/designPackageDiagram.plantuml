@@ -5,21 +5,21 @@ allow_mixing
 package app {
     class "server.js" as serverJS
     class "app.js" as appJS
-    package router {}
-    package middleware{}
-    package controllers{}
-    package models{}
-    package services{}
-    package db{}
+    package router #bisque {}
+    package middleware #bisque {}
+    package controllers #bisque {}
+    package models #d8f9ff {}
+    package services #bisque {}
+    package db #d8f9ff {}
 }
 
 package public{
-    package css{}
-    package img{}
-    package js{}
+    package css #cefad0 {}
+    package img #cefad0 {}
+    package js #bisque {}
     package view{
-        package layout{}
-        package page{}
+        package layout #cefad0 {}
+        package page #cefad0 {}
     }
 }
 

@@ -1,0 +1,21 @@
+@startuml baseApp
+skinparam style strictuml
+left to right direction
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Usuario\nno registrado" as Anonymous
+
+rectangle "Aplicación Base" {
+    usecase "UC1 - Registrar usuario" as UC1
+    usecase "UC8 - Listar publicaciones" as UC8
+    usecase "UC11 - Listar comentarios" as UC11
+    usecase "UC14 - Ver publicación" as UC14
+}
+
+Anonymous -- UC1
+Anonymous -- UC8
+Anonymous -- UC11
+Anonymous -- UC14
+
+@enduml

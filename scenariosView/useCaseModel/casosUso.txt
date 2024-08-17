@@ -1,20 +1,21 @@
-UC1	Registrar usuario
-UC2	Iniciar Sesión
-UC3	Cerrar Sesión
-UC4	Recuperar contraseña
-UC5	Ver perfil
-UC6	Editar perfil
-UC7	Crear Publicación
-UC8	Listar publicaciones 
-UC9	Editar publicación
-UC10	Crear comentario
-UC11	Listar comentarios
-UC12	Editar comentario
-UC13	Eliminar comentario
-UC14	Ver publicación
-UC15	Visualizar estadísticas
-UC16	Ver usuario
-UC17	Editar usuario
-UC18	Bloquear usuario
-UC19	Eliminar usuario
-UC20	Bloquear publicación
+UC1 - Registrar usuario
+UC2 - Iniciar Sesión
+UC3 - Cerrar Sesión
+UC4 - Recuperar contraseña
+UC5 - Ver perfil
+UC6 - Editar perfil
+UC7 - Crear Publicación
+UC8 - Listar publicaciones
+UC9 - Editar publicación
+UC10 - Crear comentario
+UC11 - Listar comentarios
+UC12 - Editar comentario
+UC13 - Eliminar comentario
+UC14 - Ver publicación
+UC15 - Visualizar estadísticas
+UC16 - Ver usuario
+UC17 - Editar usuario
+UC18 - Bloquear usuario
+UC19 - Eliminar usuario
+UC20 - Bloquear publicación
+UC21 - Eliminar publicación

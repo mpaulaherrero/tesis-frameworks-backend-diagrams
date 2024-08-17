@@ -1,0 +1,30 @@
+@startuml baseApp
+skinparam style strictuml
+left to right direction
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Usuario\nadministrador" as Admin
+
+rectangle "Aplicación Base" {
+    usecase "UC2 - Iniciar Sesión" as UC2
+    usecase "UC3 - Cerrar Sesión" as UC3
+    usecase "UC15 - Visualizar estadísticas" as UC15
+    usecase "UC16 - Ver usuario" as UC16
+    usecase "UC17 - Editar usuario" as UC17
+    usecase "UC18 - Bloquear usuario" as UC18
+    usecase "UC19 - Eliminar usuario" as UC19
+    usecase "UC20 - Bloquear publicación" as UC20
+    usecase "UC21 - Eliminar publicación" as UC21
+}
+
+Admin -- UC2
+Admin -- UC3
+Admin -- UC15
+Admin -- UC16
+Admin -- UC17
+Admin -- UC18
+Admin -- UC19
+Admin -- UC20
+Admin -- UC21
+@enduml
