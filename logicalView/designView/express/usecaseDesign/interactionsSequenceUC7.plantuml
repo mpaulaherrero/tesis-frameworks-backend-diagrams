@@ -9,7 +9,7 @@ boundary "Publication" as PublicationHtml << HTML >>
 
 participant app << express >>
 participant "bodyParser\n(json, urlencoded)" as bodyParser << middleware >>
-participant "morgan\n(HTTP Request Logger)" as morgan << middleware >>
+participant "morgan (HTTP \n Request Logger)" as morgan << middleware >>
 participant "serve-static" as serveStatic << middleware >>
 participant "cookie-parser" as cookieParser << middleware >>
 
@@ -60,13 +60,13 @@ alt content and file and title
     CreatePublicationController -> PublicationModel: createPublication(file, content, user_id, title)
     CreatePublicationController -> response: status(200)
     activate response
-    CreatePublicationController -> response: render("page/publication", created_message)
+    CreatePublicationController -> response: render("page/publication", \n created_message)
     response -> PublicationDetailView: render(options)
     deactivate response
 else error
     CreatePublicationController -> response: status(400)
     activate response
-    CreatePublicationController -> response: render("page/publication", alert_message)
+    CreatePublicationController -> response: render("page/publication", \nalert_message)
     response -> PublicationDetailView: render(options)
     deactivate response
 end
