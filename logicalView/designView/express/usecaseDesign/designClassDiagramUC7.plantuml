@@ -8,6 +8,7 @@ actor "Registered\nUser" as UserReg
 ' This is a comment on a single line
 package backend {
     boundary "Publication" as PublicationDetailView << PUG >>
+    boundary "mainLayoutProfile" as mainLayoutProfileView << PUG >>
     control "PublicationController\nCreatePublication" as CreatePublicationController
     control Router
     control auth << middleware >>
@@ -16,15 +17,22 @@ package backend {
 }
 
 package frontend {
-    boundary "Publication" as PublicationHtml << HTML >>
+    boundary "publication" as PublicationHtml << HTML >>
+    boundary "output" as outputCss << CSS >>
+    boundary "font-awesome" as fontCss << CSS >>
+    control script << JavaScript >>
 }
 
 UserReg .r.> PublicationHtml
+PublicationHtml -d-> outputCss
+PublicationHtml -d-> fontCss
+PublicationHtml -d-> script
 PublicationHtml .r.> Router
 Router -> auth
 Router -d-> uploadSingle
 Router -d-> CreatePublicationController
 CreatePublicationController -d-> PublicationDetailView
 CreatePublicationController -d-> PublicationModel
+PublicationDetailView -d-> mainLayoutProfileView: extends
 
 @enduml

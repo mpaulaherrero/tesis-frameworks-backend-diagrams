@@ -12,6 +12,7 @@ package Analysis{
 package Design{
     package backend {
         boundary "Publication" as PublicationDetailView << PUG >>
+        boundary "mainLayoutProfile" as mainLayoutProfileView << PUG >>
         control "PublicationController\nCreatePublication" as CreatePublicationController
         control Router
         control auth << middleware >>
@@ -20,27 +21,37 @@ package Design{
     }
     package frontend {
         boundary "Publication" as PublicationHtml << HTML >>
+        boundary "output" as outputCss << CSS >>
+        boundary "font-awesome" as fontCss << CSS >>
+        control script << JavaScript >>
     }
 }
 
 PublicationDetailViewAnalysis --> CreatePublicationControllerAnalysis
 CreatePublicationControllerAnalysis --> PublicationAnalysis
 
-PublicationHtml .d.> Router
+PublicationHtml ..> Router
+PublicationHtml -d-> outputCss
+PublicationHtml -d-> fontCss
+PublicationHtml -d-> script
 Router -> auth
 Router -d-> uploadSingle
 Router -d-> CreatePublicationController
 CreatePublicationController -d-> PublicationDetailView
+PublicationDetailView -d-> mainLayoutProfileView: extends
 CreatePublicationController -d-> PublicationModel
 
 PublicationDetailViewAnalysis .[#green].> PublicationHtml : <font color=green><<trace>></font>
+PublicationDetailViewAnalysis .[#green].> outputCss : <font color=green><<trace>></font>
+PublicationDetailViewAnalysis .[#green].> fontCss : <font color=green><<trace>></font>
 PublicationDetailViewAnalysis .[#green].> PublicationDetailView : <font color=green><<trace>></font>
 
 CreatePublicationControllerAnalysis .[#coral].> Router : <font color=coral><<trace>></font>
 CreatePublicationControllerAnalysis .[#coral].> CreatePublicationController : <font color=coral><<trace>></font>
 CreatePublicationControllerAnalysis .[#coral].> auth : <font color=coral><<trace>></font>
 CreatePublicationControllerAnalysis .[#coral].> uploadSingle : <font color=coral><<trace>></font>
+CreatePublicationControllerAnalysis .[#coral].> script : <font color=coral><<trace>></font>
 
-PublicationAnalysis .[#green].> PublicationModel : <font color=green><<trace>></font>
+PublicationAnalysis .[#blue].> PublicationModel : <font color=blue><<trace>></font>
 
 @enduml
