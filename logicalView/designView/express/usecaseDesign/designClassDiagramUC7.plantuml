@@ -7,7 +7,7 @@ actor "Registered\nUser" as UserReg
 
 ' This is a comment on a single line
 package backend {
-    boundary "Publication" as PublicationDetailView << PUB >>
+    boundary "Publication" as PublicationDetailView << PUG >>
     control "PublicationController\nCreatePublication" as CreatePublicationController
     control Router
     control auth << middleware >>

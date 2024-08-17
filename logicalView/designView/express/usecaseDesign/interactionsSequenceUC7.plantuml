@@ -9,7 +9,7 @@ boundary "Publication" as PublicationHtml << HTML >>
 
 participant app << express >>
 participant "bodyParser\n(json, urlencoded)" as bodyParser << middleware >>
-participant "morgan\n(HTTP request logger)" as morgan << middleware >>
+participant "morgan\n(HTTP Request Logger)" as morgan << middleware >>
 participant "serve-static" as serveStatic << middleware >>
 participant "cookie-parser" as cookieParser << middleware >>
 
@@ -21,7 +21,7 @@ control "upload.single" as uploadSingle << middleware >>
 control "PublicationController\nCreatePublication" as CreatePublicationController
 
 entity "res:response" as response
-boundary "Publication" as PublicationDetailView << PUB >>
+boundary "Publication" as PublicationDetailView << PUG >>
 entity PublicationModel
 
 UserReg -> PublicationHtml: publication_input

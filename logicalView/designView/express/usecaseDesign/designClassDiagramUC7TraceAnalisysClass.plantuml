@@ -11,7 +11,7 @@ package Analysis{
 
 package Design{
     package backend {
-        boundary "Publication" as PublicationDetailView << PUB >>
+        boundary "Publication" as PublicationDetailView << PUG >>
         control "PublicationController\nCreatePublication" as CreatePublicationController
         control Router
         control auth << middleware >>
