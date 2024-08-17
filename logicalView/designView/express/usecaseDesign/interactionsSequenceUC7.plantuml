@@ -13,16 +13,16 @@ participant "morgan (HTTP \n Request Logger)" as morgan << middleware >>
 participant "serve-static" as serveStatic << middleware >>
 participant "cookie-parser" as cookieParser << middleware >>
 
-control Router
+control Router << JavaScript >>
 
 control auth << middleware >>
 control "upload.single" as uploadSingle << middleware >>
 
-control "PublicationController\nCreatePublication" as CreatePublicationController
+control "PublicationController\nCreatePublication" as CreatePublicationController << JavaScript >>
 
-entity "res:response" as response
+entity "res:response" as response << JavaScript >>
 boundary "Publication" as PublicationDetailView << PUG >>
-entity PublicationModel
+entity PublicationModel << JavaScript >>
 
 UserReg -> PublicationHtml: publication_input
 activate PublicationHtml

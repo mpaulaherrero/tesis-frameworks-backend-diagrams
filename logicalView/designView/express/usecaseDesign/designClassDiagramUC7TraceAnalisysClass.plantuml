@@ -13,11 +13,11 @@ package Design{
     package backend {
         boundary "Publication" as PublicationDetailView << PUG >>
         boundary "mainLayoutProfile" as mainLayoutProfileView << PUG >>
-        control "PublicationController\nCreatePublication" as CreatePublicationController
-        control Router
+        control "PublicationController\nCreatePublication" as CreatePublicationController << JavaScript >>
+        control Router << JavaScript >>
         control auth << middleware >>
         control "upload.single" as uploadSingle << middleware >>
-        entity PublicationModel
+        entity PublicationModel << JavaScript >>
     }
     package frontend {
         boundary "Publication" as PublicationHtml << HTML >>
