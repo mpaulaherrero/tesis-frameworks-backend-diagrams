@@ -1,0 +1,38 @@
+@startuml architecture_design
+skinparam ComponentBackgroundColor white
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+node "Client" as pc {
+    component "web browser" as browser
+    component frontend #f2dcdb
+
+    browser *--> frontend
+}
+
+node "Server" as server {
+    component "Web Server" as webserver
+    component "nodeJS" as nodeJS
+    component "node_modules" as nodeModules
+    component "expressJS" as expressJS
+    component pg
+    component backend #f2dcdb {
+        component app #f2dcdb
+        component public #f2dcdb
+    }
+
+    webserver <-d-> nodeJS
+    nodeJS <--> backend
+    nodeModules *-d-> expressJS
+    nodeModules *-d-> pg
+    app -d-> nodeModules
+}
+
+node "Database Server" as dbServer {
+    component "PostgreSQL" as postgresql
+}
+
+browser <..[#OrangeRed]r..> webserver: <font color=OrangeRed>HTTP</font>
+app <.[#OrangeRed]d.>  postgresql
+
+@enduml
