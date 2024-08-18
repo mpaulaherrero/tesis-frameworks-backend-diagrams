@@ -33,6 +33,6 @@ node "Database Server" as dbServer {
 }
 
 browser <..[#OrangeRed]r..> webserver: <font color=OrangeRed>HTTP</font>
-app <.[#OrangeRed]d.>  postgresql
+app <.[#OrangeRed]d.>  postgresql: <font color=OrangeRed>Intranet</font>
 
 @enduml
