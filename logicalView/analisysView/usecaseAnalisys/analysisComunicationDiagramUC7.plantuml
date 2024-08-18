@@ -1,0 +1,12 @@
+@startuml
+object ": Registered\nUser" as UserReg
+object ": Publication\nDetailView" as PublicationDetailView
+object ": Publication" as Publication
+object ": CreatePublication\nController" as CreatePublicationController
+
+
+UserReg -r- PublicationDetailView : submit(image, content, title) >
+PublicationDetailView -r- CreatePublicationController: > 1: createPublication(image, content, title)  \n 3: showResultMessage() <
+CreatePublicationController -- Publication:  2: create(image, content, title) >
+
+@enduml
