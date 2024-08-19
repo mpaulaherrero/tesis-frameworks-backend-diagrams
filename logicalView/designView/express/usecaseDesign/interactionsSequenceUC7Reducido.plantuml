@@ -1,0 +1,67 @@
+@startuml
+skinparam style strictuml
+skinparam defaultFontSize 11
+skinparam stereotypePosition top
+
+actor "Registered\nUser" as UserReg
+
+boundary "Publication" as PublicationHtml << HTML >>
+
+participant app << express >>
+participant "bodyParser\nmorgan\nserve-static\ncookie-parser" as middlewars << middleware >>
+
+control Router << JavaScript >>
+
+control auth << middleware >>
+control "upload.single" as uploadSingle << middleware >>
+
+control "PublicationController\nCreatePublication" as CreatePublicationController << JavaScript >>
+
+entity "res:response" as response << JavaScript >>
+boundary "Publication" as PublicationDetailView << PUG >>
+entity PublicationModel << JavaScript >>
+
+UserReg -> PublicationHtml: publication_input
+activate PublicationHtml
+UserReg -> PublicationHtml: content, title
+UserReg -> PublicationHtml: submit()
+PublicationHtml -> app: http_request(POST, \n/publication, body)
+deactivate PublicationHtml
+activate app
+app -> middlewars: (req, res)
+deactivate app
+activate middlewars
+middlewars -> Router: (req, res)
+deactivate middlewars
+activate Router
+Router -> Router: post("/publication", \nreq, res)
+Router -> auth: (req, res)
+deactivate Router
+activate auth
+auth -> uploadSingle: ('publication-input',\nreq, res)
+deactivate auth
+activate uploadSingle
+uploadSingle -> CreatePublicationController: (req, res)
+deactivate uploadSingle
+activate CreatePublicationController
+alt content and file and title
+    CreatePublicationController -> PublicationModel: createPublication(file, content, user_id, title)
+    CreatePublicationController -> response: status(200)
+    activate response
+    CreatePublicationController -> response: render("page/publication", \n created_message)
+    response -> PublicationDetailView: render(options)
+    deactivate response
+else error
+    CreatePublicationController -> response: status(400)
+    activate response
+    CreatePublicationController -> response: render("page/publication", \nalert_message)
+    response -> PublicationDetailView: render(options)
+    deactivate response
+end
+
+CreatePublicationController --> Router: res
+deactivate CreatePublicationController
+Router --> app: res
+app --> PublicationHtml: http_response(\nstatus, body)
+
+@enduml
