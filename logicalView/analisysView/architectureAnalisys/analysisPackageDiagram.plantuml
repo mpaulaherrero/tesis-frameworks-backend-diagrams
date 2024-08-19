@@ -2,9 +2,9 @@
 skinparam style strictuml
 left to right direction
 
-package Views {}
-package Controllers{}
-package Models{}
+package Views #cefad0{}
+package Controllers #bisque{}
+package Models #d8f9ff{}
 
 Views ..> Controllers
 Controllers ..> Models
