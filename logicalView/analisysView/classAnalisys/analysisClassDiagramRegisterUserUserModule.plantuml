@@ -1,0 +1,38 @@
+@startuml
+skinparam style strictuml
+left to right direction
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Registered\nUser" as UserReg
+
+boundary LoginView
+boundary "Recovery\nPasswordView" as RecoveryPasswordView
+boundary "LandingPage\nView" as LandingPageView
+boundary ProfileView
+
+entity User
+
+control "UserLogin\nController" as UserLoginController
+control "UserRecover\nPasswordController" as UserRecoverPasswordController
+control "Logout\nController" as LogoutController
+control "ViewProfile\nController" as ViewProfileController
+control "EditProfile\nController" as EditProfileController
+
+UserReg --> LoginView
+UserReg --> RecoveryPasswordView
+UserReg --> LandingPageView
+UserReg --> ProfileView
+
+LoginView --> UserLoginController
+RecoveryPasswordView --> UserRecoverPasswordController
+LandingPageView --> LogoutController
+ProfileView --> ViewProfileController
+ProfileView --> EditProfileController
+
+UserLoginController --> User
+UserRecoverPasswordController --> User
+ViewProfileController --> User
+EditProfileController --> User
+
+@enduml
