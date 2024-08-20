@@ -1,0 +1,45 @@
+@startuml architecture_design
+skinparam ComponentBackgroundColor white
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+node "Client" as pc {
+    component "web browser" as browser
+    component frontend #f2dcdb
+
+    browser *--> frontend
+}
+
+node "Server" as server {
+    component "Web Server" as webserver
+    component "passenger_wsgi" as wsgi
+    component "python_components" as components
+    component django
+    component backend #f2dcdb {
+        component proyect #f2dcdb
+        component app #f2dcdb
+        component staticfiles #f2dcdb
+        component media #f2dcdb
+        'component theme #f2dcdb
+    }
+
+    webserver <-d-> wsgi
+    wsgi <-d-> backend
+    app -d-> components
+    proyect -d-> components
+    components *-d-> django
+}
+
+'diseño
+'proyect -[hidden]d- staticfiles
+'app -[hidden]d- media
+'media -[hidden]r- staticfiles
+
+node "Database Server" as dbServer {
+    component "SQLite" as sqplite
+}
+
+browser <..[#OrangeRed]r..> webserver: <font color=OrangeRed>HTTP</font>
+proyect <.[#OrangeRed].>  sqplite: <font color=OrangeRed>Intranet</font>
+
+@enduml
