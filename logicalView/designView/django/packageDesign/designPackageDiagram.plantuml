@@ -67,10 +67,10 @@ package staticfiles #cefad0{
     '}
 }
 
-package theme #cefad0{
+'package theme #cefad0{
     'package "dist" as static.css.dist {}
     'package "templates" as theme.templates {}
-}
+'}
 
 package media {}
 
@@ -83,12 +83,12 @@ settings --> wsgi: <<config>>
 'settings ..> admin
 settings -l-> media: <<config>>
 settings -l-> staticfiles: <<config>>
-settings -l-> theme: <<config>>
+'settings -l-> theme: <<config>>
 
 'diseño
 urls -[hidden]l- wsgi
 media -[hidden]d- staticfiles
-staticfiles -[hidden]l- theme
+'staticfiles -[hidden]l- theme
 environ -[hidden]l- django
 
 
