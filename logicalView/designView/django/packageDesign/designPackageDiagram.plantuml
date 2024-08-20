@@ -1,0 +1,144 @@
+@startuml
+skinparam style strictuml
+allow_mixing
+
+package "python_components" as components {
+    component "django-widget-tweaks" as tweaks
+    component "django-tailwind" as tailwind
+    component "email.mime" as email
+    component smtplib
+    component "django_rest_framework" as restframework
+    component pathlib
+    component "django-environ" as environ
+    component django {
+        'component "contrib" as django.contrib
+        'component "core" as django.core
+        'component "http" as django.http
+        'component "shortcuts" as django.shortcuts
+        'component "views" as django.views
+        'component "utils" as django.utils
+        'component "db" as django.db
+        'component "forms" as django.forms
+        'component "urls" as django.url
+    }
+}
+
+package project {
+    '.env es un archivo de configuración de environ
+    'class asgi <<python>>
+    class wsgi <<python>>
+    class settings <<config>>
+    class urls <<python>> #bisque
+    class manage <<python>>
+    'será que manage va? es una utilidad de linea de comando
+}
+
+package app {
+    package controlers as controllers #bisque {
+        'package comment_views {}
+        'package publication_views {}
+        'package user_views {}
+    }
+    package models #d8f9ff{
+        'package user {}
+        'package user_forms {}
+    }
+    package templates #cefad0 {}
+    class admin <<python>> #bisque
+    class permissions <<python>> #bisque
+}
+
+package staticfiles #cefad0{
+    'package admin as staticfilesadmin {
+    '    package css {}
+    '    package img {}
+    '    package js {}
+    '}
+    'package rest_framework{
+    '    package css {}
+    '    package docs {
+        '    package css {}
+        '    package img {}
+        '    package js {}
+    '    }
+    '    package fonts {}
+    '    package img {}
+    '    package js {}
+    '}
+}
+
+package theme #cefad0{
+    'package "dist" as static.css.dist {}
+    'package "templates" as theme.templates {}
+}
+
+package media {}
+
+manage .d.> settings
+settings ..> environ
+settings ..> pathlib
+settings -d-> urls: <<config>>
+settings --> wsgi: <<config>>
+'settings ..> templates
+'settings ..> admin
+settings -l-> media: <<config>>
+settings -l-> staticfiles: <<config>>
+settings -l-> theme: <<config>>
+
+'diseño
+urls -[hidden]l- wsgi
+media -[hidden]d- staticfiles
+staticfiles -[hidden]l- theme
+environ -[hidden]l- django
+
+
+wsgi ..> django
+urls .[hidden].> django: feo
+
+urls .d.> controllers
+'urls -d-> user_views
+'urls -d-> publication_views
+'urls -d-> comment_views
+
+
+admin ..> models
+admin ..> django
+
+'comment_views --> models
+'publication_views --> models
+'user_views --> models
+'user_forms -r-> user
+controllers ..> models
+controllers ..> templates
+controllers ..> permissions
+'controllers ..> settings CICLO
+controllers ..> django
+'controllers ..> django.contrib
+'controllers ..> django.core
+'controllers ..> django.http
+'controllers ..> django.shortcuts
+'controllers ..> django.views
+'controllers ..> django.utils
+controllers ..> email
+controllers ..> smtplib
+
+'templates .l.> theme
+'templates ..> staticfiles
+templates ..> tweaks
+templates ..> tailwind
+permissions ..> restframework
+
+models ..> restframework
+models ..> django
+'models ..> django.db
+'models ..> django.url
+'models ..> django.forms
+'models ..> django.core
+'models ..> django.contrib
+
+'comment_views --> restframework
+'publication_views --> restframework
+'user_views --> restframework
+'django -[hidden]d-> components
+
+@enduml
