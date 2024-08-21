@@ -12,7 +12,7 @@ node "Client" as pc {
 
 node "Server" as server {
     component "Web Server" as webserver
-    component "passenger_wsgi" as wsgi
+    component "wsgi" as wsgi
     component "python_components" as components
     component django
     component backend #f2dcdb {

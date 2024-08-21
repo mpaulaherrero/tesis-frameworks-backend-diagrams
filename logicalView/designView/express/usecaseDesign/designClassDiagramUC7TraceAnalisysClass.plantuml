@@ -7,6 +7,9 @@ package Analysis{
     boundary "Publication\nDetailView" as PublicationDetailViewAnalysis
     entity "Publication" as PublicationAnalysis
     control "CreatePublication\nController" as CreatePublicationControllerAnalysis
+
+    PublicationDetailViewAnalysis --> CreatePublicationControllerAnalysis
+    CreatePublicationControllerAnalysis --> PublicationAnalysis
 }
 
 package Design{
@@ -25,22 +28,20 @@ package Design{
         boundary "font-awesome" as fontCss << CSS >>
         control script << JavaScript >>
     }
+
+    PublicationHtml ..> Router
+    PublicationHtml -d-> outputCss
+    PublicationHtml -d-> fontCss
+    PublicationHtml -d-> script
+    Router -> auth
+    Router -d-> uploadSingle
+    Router -d-> CreatePublicationController
+    CreatePublicationController -d-> PublicationDetailView
+    PublicationDetailView -d-> mainLayoutProfileView: extends
+    CreatePublicationController -d-> PublicationModel
 }
 
-PublicationDetailViewAnalysis --> CreatePublicationControllerAnalysis
-CreatePublicationControllerAnalysis --> PublicationAnalysis
-
-PublicationHtml ..> Router
-PublicationHtml -d-> outputCss
-PublicationHtml -d-> fontCss
-PublicationHtml -d-> script
-Router -> auth
-Router -d-> uploadSingle
-Router -d-> CreatePublicationController
-CreatePublicationController -d-> PublicationDetailView
-PublicationDetailView -d-> mainLayoutProfileView: extends
-CreatePublicationController -d-> PublicationModel
-
+'trace
 PublicationDetailViewAnalysis .[#green].> PublicationHtml : <font color=green><<trace>></font>
 PublicationDetailViewAnalysis .[#green].> outputCss : <font color=green><<trace>></font>
 PublicationDetailViewAnalysis .[#green].> fontCss : <font color=green><<trace>></font>

@@ -1,0 +1,38 @@
+@startuml
+skinparam style strictuml
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Registered\nUser" as UserReg
+
+package backend {
+    boundary "create_publication" as PublicationDetailView << DjangoTemplates >>
+    boundary "layout" as mainLayoutProfileView << DjangoTemplates >>
+    boundary "widget_tweaks" as widgetTweaks << django-widget-tweaks >>
+    boundary "tailwind_tags" as tailwindTags << django-tailwind >>
+    control urls << Python >>
+    control "<b>@login_required</b>\npublication_views.\nregister_publication" as CreatePublicationController << Python >>
+    entity PublicationForm << Python >>
+    entity Publication << Python >>
+}
+
+package frontend {
+    boundary "create_publication" as PublicationHtml << HTML >>
+    boundary "tailwind_css" as outputCss << CSS >>
+    control previewImage << JavaScript >>
+}
+
+UserReg .r.> PublicationHtml
+PublicationHtml -d-> outputCss
+PublicationHtml *-d- previewImage
+PublicationHtml .r.> urls
+urls -r-> CreatePublicationController
+CreatePublicationController -d-> PublicationDetailView
+PublicationDetailView -d-> mainLayoutProfileView: extends
+mainLayoutProfileView -> tailwindTags: load
+PublicationDetailView -> widgetTweaks: load
+
+CreatePublicationController -d-> PublicationForm
+PublicationForm -d-> Publication
+
+@enduml
