@@ -1,0 +1,110 @@
+@startuml
+skinparam style strictuml
+skinparam defaultFontSize 11
+skinparam stereotypePosition top
+
+actor "Registered\nUser" as UserReg
+
+boundary "create_publication" as PublicationHtml << HTML >>
+
+participant wsgi << django >>
+
+participant "Security" as md1 << middleware >>
+participant "Session" as md2 << middleware >>
+participant "Common" as md3 << middleware >>
+participant "CsrfView" as md4 << middleware >>
+participant "Authentication" as md5 << middleware >>
+participant "Message" as md6 << middleware >>
+participant "XFrameOptions" as md7 << middleware >>
+
+control "URLConf\n[urls]" as urls << Python >>
+participant "View" as view << middleware >>
+
+control "<b>@login_required</b>\npublication_views.\nregister_publication" as CreatePublicationController << Python >>
+
+entity PublicationForm << Python >>
+entity Publication << Python >>
+
+participant "Template" as template << middleware >>
+boundary "create_publication" as PublicationDetailView << DjangoTemplates >>
+
+
+UserReg -> PublicationHtml: image
+activate PublicationHtml
+UserReg -> PublicationHtml: content, title
+UserReg -> PublicationHtml: submit()
+PublicationHtml -> wsgi: http_request(POST,\n/create_publication,\nbody)
+deactivate PublicationHtml
+activate wsgi
+wsgi -> md1: (request)
+deactivate wsgi
+activate md1
+md1 -> md2: (request)
+deactivate md1
+activate md2
+md2 -> md3: (request)
+deactivate md2
+activate md3
+md3 -> md4: (request)
+deactivate md3
+activate md4
+md4 -> md5: (request)
+deactivate md4
+activate md5
+md5 -> md5: login_required()
+md5 -> md6: (request)
+deactivate md5
+activate md6
+md6 -> md7: (request)
+deactivate md6
+activate md7
+md7 -> urls: (request)
+deactivate md7
+activate urls
+urls -> view : request.POST,\n/create_publication,\nrequest.body]
+deactivate urls
+activate view
+view -> CreatePublicationController: request.POST,\n/create_publication,\n.request.body]
+deactivate view
+activate CreatePublicationController
+CreatePublicationController -> PublicationForm: (request.POST,\nrequest.FILES)
+PublicationForm -> Publication: title,\nimage,\ncontent
+CreatePublicationController -> PublicationForm: is_valid()
+alt valid
+    CreatePublicationController -> PublicationForm: save()
+    CreatePublicationController -> Publication: set(author_id)
+    CreatePublicationController -> Publication: save()
+    CreatePublicationController -> template: redirect("home")
+    activate template
+else not valid
+    CreatePublicationController -> template: render(request,\n"create_publication.html",\n {"form": form})
+    template -> PublicationDetailView : render()
+    deactivate CreatePublicationController
+end
+template --> md7: (response)
+deactivate template
+activate md7
+md7 --> md6: (response)
+deactivate md7
+activate md6
+md6 --> md5: (response)
+deactivate md6
+activate md5
+md5 --> md4: (response)
+deactivate md5
+activate md4
+md4 --> md3: (response)
+deactivate md4
+activate md3
+md3 --> md2: (response)
+deactivate md3
+activate md2
+md2 --> md1: (resresponse)
+deactivate md2
+activate md1
+md1 --> wsgi: (response)
+deactivate md1
+activate wsgi
+wsgi --> PublicationHtml: http_response(\nstatus, body)
+deactivate wsgi
+@enduml
