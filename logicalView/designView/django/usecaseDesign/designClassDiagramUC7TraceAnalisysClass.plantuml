@@ -53,6 +53,7 @@ CreatePublicationControllerAnalysis .[#coral].> CreatePublicationController : <f
 CreatePublicationControllerAnalysis .[#coral].> previewImage : <font color=coral><<trace>></font>
 
 PublicationAnalysis .[#3cdfff].> PublicationForm : <font color=3cdfff><<trace>></font>
+PublicationAnalysis .[#3cdfff].> Publication : <font color=3cdfff><<trace>></font>
 
 
 @enduml
