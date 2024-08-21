@@ -77,12 +77,12 @@ package media {}
 manage .d.> settings
 settings ..> environ
 settings ..> pathlib
-settings -d-> urls: <<config>>
-settings --> wsgi: <<config>>
+settings .d.> urls: <<config>>
+settings ..> wsgi: <<config>>
 'settings ..> templates
 'settings ..> admin
-settings -l-> media: <<config>>
-settings -l-> staticfiles: <<config>>
+settings .l.> media: <<config>>
+settings .l.> staticfiles: <<config>>
 'settings -l-> theme: <<config>>
 
 'diseño
@@ -93,7 +93,7 @@ environ -[hidden]l- django
 
 
 wsgi ..> django
-urls .[hidden].> django: feo
+urls ..> django
 
 urls .d.> controllers
 'urls -d-> user_views
