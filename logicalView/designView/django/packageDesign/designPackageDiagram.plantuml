@@ -2,7 +2,7 @@
 skinparam style strictuml
 allow_mixing
 
-package "python_components" as components {
+package "python-site-packages" as components {
     component "django-widget-tweaks" as tweaks
     component "django-tailwind" as tailwind
     component "email.mime" as email
