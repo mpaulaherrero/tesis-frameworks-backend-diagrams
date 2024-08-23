@@ -32,7 +32,14 @@ node "Database Server" as dbServer {
     component "PostgreSQL" as postgresql
 }
 
+node "SMTP Server" as smtpServer {
+ component "smtp.gmail.com" as smtp
+}
+
 browser <..[#OrangeRed]r..> webserver: <font color=OrangeRed>HTTP</font>
 app <.[#OrangeRed]d.>  postgresql: <font color=OrangeRed>Intranet</font>
+app <.[#OrangeRed]u.>  smtp: <font color=OrangeRed>HTTP</font>
 
+'diseño
+dbServer -[hidden]d- smtpServer
 @enduml
