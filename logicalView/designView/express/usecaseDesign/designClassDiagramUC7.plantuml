@@ -6,7 +6,7 @@ skinparam defaultFontSize 11
 actor "Registered\nUser" as UserReg
 
 ' This is a comment on a single line
-package backend {
+package backend <<express:4.19.2>>{
     boundary "Publication" as PublicationDetailView << PUG >>
     boundary "mainLayoutProfile" as mainLayoutProfileView << PUG >>
     control "PublicationController\nCreatePublication" as CreatePublicationController << JavaScript >>

@@ -13,7 +13,7 @@ package Analysis{
 }
 
 package Design{
-    package backend {
+    package backend <<express:4.19.2>>{
         boundary "Publication" as PublicationDetailView << PUG >>
         boundary "mainLayoutProfile" as mainLayoutProfileView << PUG >>
         control "PublicationController\nCreatePublication" as CreatePublicationController << JavaScript >>
