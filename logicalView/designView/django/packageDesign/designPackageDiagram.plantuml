@@ -23,7 +23,7 @@ package "python-site-packages" as components {
     }
 }
 
-package project {
+package project <<django:5.0.2>>{
     '.env es un archivo de configuración de environ
     'class asgi <<python>>
     class wsgi <<python>>
@@ -33,7 +33,7 @@ package project {
     'será que manage va? es una utilidad de linea de comando
 }
 
-package app {
+package app <<django:5.0.2>>{
     package controlers as controllers #bisque {
         'package comment_views {}
         'package publication_views {}

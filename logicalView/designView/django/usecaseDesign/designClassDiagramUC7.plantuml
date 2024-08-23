@@ -5,7 +5,7 @@ skinparam defaultFontSize 11
 
 actor "Registered\nUser" as UserReg
 
-package backend {
+package backend <<django:5.0.2>>{
     boundary "create_publication" as PublicationDetailView << DjangoTemplates >>
     boundary "layout" as mainLayoutProfileView << DjangoTemplates >>
     boundary "widget_tweaks" as widgetTweaks << django-widget-tweaks >>
