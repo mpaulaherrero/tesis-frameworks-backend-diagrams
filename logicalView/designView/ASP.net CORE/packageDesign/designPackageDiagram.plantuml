@@ -1,0 +1,63 @@
+@startuml
+skinparam style strictuml
+allow_mixing
+
+package "NuGet Packages" as nugetPackages {
+    component "Microsoft.EntityFrameworkCore" as efcore
+    component "Microsoft.AspNetCore.Mvc" as mvc
+    component "Microsoft.Extensions.Configuration" as config
+    component "Microsoft.Extensions.Logging" as logging
+    component "Npgsql.EntityFrameworkCore.PostgreSQL" as npgsql
+}
+
+package project {
+    class "Program.cs" as program <<csharp>>
+    class "Startup.cs" as startup <<csharp>>
+    class "appsettings.json" as appsettings <<config>>
+}
+
+package backend {
+    package Controllers #bisque {
+        ' Controladores
+    }
+    package Models #d8f9ff {
+        ' Modelos
+    }
+    package Views #cefad0 {
+        ' Vistas
+    }
+    package wwwroot #cefad0 {
+        ' Archivos estáticos
+    }
+    package Data #d8f9ff {
+        ' Clases de acceso a datos
+    }
+    package Migrations #d8f9ff {
+        ' Clases de migraciones
+    }
+}
+
+program .d.> startup
+startup ..> config
+startup ..> logging
+startup .d.> appsettings: <<config>>
+startup .d.> appsettingsDev: <<config>>
+appsettings ..> npgsql
+appsettingsDev ..> npgsql
+
+'diseño
+appsettings -[hidden]d- appsettingsDev
+
+Controllers ..> Models
+Controllers ..> Views
+Controllers ..> Data
+Controllers ..> efcore
+Controllers ..> mvc
+
+Models ..> efcore
+Models ..> npgsql
+
+Data ..> efcore
+Data ..> npgsql
+
+@enduml

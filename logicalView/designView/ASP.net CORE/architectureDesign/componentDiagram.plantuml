@@ -1,0 +1,41 @@
+@startuml architecture_design
+skinparam ComponentBackgroundColor white
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+node "Client" as pc {
+    component "web browser" as browser
+    component frontend #f2dcdb
+
+    browser *--> frontend
+}
+
+node "Server" as server {
+    component "Web Server" as webserver
+    component "ASP.NET Core" as aspnetcore
+    component "NuGet Packages" as nugetPackages
+    component pg
+    component backend #f2dcdb {
+        component app #f2dcdb 
+        component wwwroot #f2dcdb
+    }
+
+    webserver <-d-> aspnetcore
+    aspnetcore <--> backend
+    nugetPackages *-d-> pg
+    app -d-> nugetPackages
+}
+
+node "Database Server" as dbServer {
+    component "PostgreSQL" as postgresql
+}
+
+node "SMTP Server" as smtpServer {
+ component "smtp.gmail.com" as smtp
+}
+
+browser <..[#OrangeRed]r..> webserver: <font color=OrangeRed>HTTP</font>
+app <.[#OrangeRed]d.>  postgresql: <font color=OrangeRed>Intranet</font>
+app <.[#OrangeRed]u.>  smtp: <font color=OrangeRed>HTTP</font>
+
+@enduml

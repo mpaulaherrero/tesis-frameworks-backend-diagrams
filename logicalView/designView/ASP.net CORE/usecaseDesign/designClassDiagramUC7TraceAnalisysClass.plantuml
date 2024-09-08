@@ -1,0 +1,51 @@
+@startuml
+skinparam style strictuml
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+package Analysis {
+    boundary "Publication\nDetailView" as PublicationDetailViewAnalysis
+    entity "Publication" as PublicationAnalysis
+    control "CreatePublication\nController" as CreatePublicationControllerAnalysis
+
+    PublicationDetailViewAnalysis --> CreatePublicationControllerAnalysis
+    CreatePublicationControllerAnalysis --> PublicationAnalysis
+}
+
+package Design {
+    package backend {
+        boundary "Create.cshtml" as PublicationDetailView << RazorView >>
+        boundary "_Layout.cshtml" as mainLayoutProfileView << RazorView >>
+        control "PublicationController\n[HttpPost]\nCreate" as CreatePublicationController << C# >>
+        entity "CreatePublicationViewModel" << C# >>
+        entity "Publication" << C# >>
+    }
+
+    package frontend {
+        boundary "CreatePublication" as PublicationHtml << HTML >>
+        boundary "site_css" as outputCss << CSS >>
+        control previewImage << JavaScript >>
+    }
+
+    PublicationHtml -d-> outputCss
+    PublicationHtml *-d- previewImage
+    PublicationHtml ..> CreatePublicationController
+    CreatePublicationController -d-> PublicationDetailView
+    PublicationDetailView -d-> mainLayoutProfileView: extends
+
+    CreatePublicationController -d-> CreatePublicationViewModel
+    CreatePublicationViewModel -d-> Publication
+}
+
+'trace
+PublicationDetailViewAnalysis .[#green]r.> PublicationHtml : <font color=green><<trace>></font>
+PublicationDetailViewAnalysis .[#green].> outputCss : <font color=green><<trace>></font>
+PublicationDetailViewAnalysis .[#green].> PublicationDetailView : <font color=green><<trace>></font>
+
+CreatePublicationControllerAnalysis .[#coral].> CreatePublicationController : <font color=coral><<trace>></font>
+CreatePublicationControllerAnalysis .[#coral].> previewImage : <font color=coral><<trace>></font>
+
+PublicationAnalysis .[#3cdfff].> CreatePublicationViewModel : <font color=3cdfff><<trace>></font>
+PublicationAnalysis .[#3cdfff].> Publication : <font color=3cdfff><<trace>></font>
+
+@enduml
