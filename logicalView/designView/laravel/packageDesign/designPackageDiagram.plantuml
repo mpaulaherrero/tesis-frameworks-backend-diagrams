@@ -1,0 +1,97 @@
+@startuml paquete de diseño laravel
+skinparam style strictuml
+allow_mixing
+
+package routes {
+    class "web.php" as webPHP #bisque {}
+}
+
+package app {
+    package Http {
+        package controllers #bisque {}
+        package middleware #bisque {}
+    }
+    package models #d8f9ff {}
+}
+
+package resources{
+    package css #cefad0 {}  
+    package js #cefad0 {}  
+    package svg #cefad0 {}
+    ' package lang #cefad0 {}
+    ' package js #bisque {}
+    package view{
+        package auth #cefad0 {}
+        package components #cefad0 {}
+        package login #cefad0 {}
+        package publication #cefad0 {}
+        package user #cefad0 {}
+        class index #cefad0 {}
+        class admin #cefad0 {}
+    }
+}
+
+package packages{
+    component laravel
+}
+
+webPHP .d.> controllers
+webPHP .d.> middleware
+middleware .d.> models
+controllers .d-> models
+controllers .d-> view
+controllers .d-> packages
+view .d-> css
+view .d-> js
+view .d-> svg
+' serverJS .d.> appJS
+
+' appJS .d.> router
+' appJS .[hidden].> db
+' appJS ..> morgan
+' appJS ..> cookieParser
+' appJS ..> express
+' appJS ..> dotenv
+' appJS ..> pug
+' appJS .[hidden]left.> public.view
+
+' router .left.> public.view
+' router ..> express
+' router ..> middleware
+' router ..> controllers
+' router ..> models
+
+' middleware ..> multer
+' middleware ..> path
+' middleware ..> jsonwebtoken
+' middleware .left.> public.view
+
+' controllers ..> services
+
+' services ..> models
+' services ..> nodemailer
+' services ..> jsonwebtoken
+' services ..> bcrypt
+' services ..> view
+
+' models ..> db
+' db .right.> pg
+
+' view .[hidden]down.> css
+' css .[hidden]left.> img
+' img .[hidden]left.> js
+
+' express .[hidden]left.> morgan
+' morgan .[hidden]left.> cookieParser
+' cookieParser .[hidden]left.> dotenv
+' dotenv .[hidden]left.> pug
+
+' express .[hidden]down.> path
+' multer .[hidden]left.> path
+
+' multer .[hidden]down.> bcrypt
+' bcrypt .[hidden]left.> nodemailer
+' nodemailer .[hidden]left.> jsonwebtoken
+
+' nodemailer .[hidden]down.> pg
+@enduml
