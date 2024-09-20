@@ -6,14 +6,14 @@ skinparam defaultFontSize 11
 actor "Registered\nUser" as UserReg
 
 ' This is a comment on a single line
-package backend {
+package backend <<express:4.19.2>>{
     boundary "Publication" as PublicationDetailView << PUG >>
     boundary "mainLayoutProfile" as mainLayoutProfileView << PUG >>
     control "PublicationController\nCreatePublication" as CreatePublicationController << JavaScript >>
     control Router << JavaScript >>
     control auth << middleware >>
     control "upload.single" as uploadSingle << middleware >>
-    entity PublicationModel << JavaScript >>
+    entity Publication << JavaScript >>
 }
 
 package frontend {
@@ -32,7 +32,7 @@ Router -> auth
 Router -d-> uploadSingle
 Router -d-> CreatePublicationController
 CreatePublicationController -d-> PublicationDetailView
-CreatePublicationController -d-> PublicationModel
+CreatePublicationController -d-> Publication
 PublicationDetailView -d-> mainLayoutProfileView: extends
 
 @enduml

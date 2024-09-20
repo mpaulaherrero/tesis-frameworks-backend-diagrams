@@ -13,14 +13,14 @@ package Analysis{
 }
 
 package Design{
-    package backend {
+    package backend <<express:4.19.2>>{
         boundary "Publication" as PublicationDetailView << PUG >>
         boundary "mainLayoutProfile" as mainLayoutProfileView << PUG >>
         control "PublicationController\nCreatePublication" as CreatePublicationController << JavaScript >>
         control Router << JavaScript >>
         control auth << middleware >>
         control "upload.single" as uploadSingle << middleware >>
-        entity PublicationModel << JavaScript >>
+        entity Publication << JavaScript >>
     }
     package frontend {
         boundary "Publication" as PublicationHtml << HTML >>
@@ -38,7 +38,7 @@ package Design{
     Router -d-> CreatePublicationController
     CreatePublicationController -d-> PublicationDetailView
     PublicationDetailView -d-> mainLayoutProfileView: extends
-    CreatePublicationController -d-> PublicationModel
+    CreatePublicationController -d-> Publication
 }
 
 'trace
@@ -53,6 +53,6 @@ CreatePublicationControllerAnalysis .[#coral].> auth : <font color=coral><<trace
 CreatePublicationControllerAnalysis .[#coral].> uploadSingle : <font color=coral><<trace>></font>
 CreatePublicationControllerAnalysis .[#coral].> script : <font color=coral><<trace>></font>
 
-PublicationAnalysis .[#3cdfff].> PublicationModel : <font color=3cdfff><<trace>></font>
+PublicationAnalysis .[#3cdfff].> Publication : <font color=3cdfff><<trace>></font>
 
 @enduml

@@ -2,7 +2,7 @@
 skinparam style strictuml
 allow_mixing
 
-package app {
+package app <<express:4.19.2>>{
     class "server.js" as serverJS
     class "app.js" as appJS
     package router #bisque {}
@@ -13,7 +13,7 @@ package app {
     package db #d8f9ff {}
 }
 
-package public{
+package public {
     package css #cefad0 {}
     package img #cefad0 {}
     package js #bisque {}
@@ -35,6 +35,7 @@ package node_modules{
     component pg
     component dotenv
     component pug
+    component tailwindcss
 }
 
 serverJS .d.> appJS
@@ -70,6 +71,10 @@ services ..> view
 models ..> db
 db .right.> pg
 
+layout .> css
+css .> tailwindcss
+
+'diseño
 view .[hidden]down.> css
 css .[hidden]left.> img
 img .[hidden]left.> js
@@ -87,4 +92,5 @@ bcrypt .[hidden]left.> nodemailer
 nodemailer .[hidden]left.> jsonwebtoken
 
 nodemailer .[hidden]down.> pg
+pg .[hidden]down.> tailwindcss
 @enduml

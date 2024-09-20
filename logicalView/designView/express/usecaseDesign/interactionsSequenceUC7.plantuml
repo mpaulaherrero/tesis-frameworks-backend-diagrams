@@ -22,7 +22,9 @@ control "PublicationController\nCreatePublication" as CreatePublicationControlle
 
 entity "res:response" as response << JavaScript >>
 boundary "Publication" as PublicationDetailView << PUG >>
-entity PublicationModel << JavaScript >>
+entity Publication << JavaScript >>
+
+database postgresql
 
 UserReg -> PublicationHtml: publication_input
 activate PublicationHtml
@@ -57,7 +59,8 @@ uploadSingle -> CreatePublicationController: (req, res)
 deactivate uploadSingle
 activate CreatePublicationController
 alt content and file and title
-    CreatePublicationController -> PublicationModel: createPublication(file, content, user_id, title)
+    CreatePublicationController -> Publication: createPublication(file, content, user_id, title)
+    Publication -> postgresql: query('INSERT ..')
     CreatePublicationController -> response: status(200)
     activate response
     CreatePublicationController -> response: render("page/publication", \n created_message)

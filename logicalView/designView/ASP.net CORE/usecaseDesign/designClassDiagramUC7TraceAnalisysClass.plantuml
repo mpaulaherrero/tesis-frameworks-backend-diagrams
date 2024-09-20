@@ -3,7 +3,7 @@ skinparam style strictuml
 skinparam defaultTextAlignment center
 skinparam defaultFontSize 11
 
-package Analysis{
+package Analysis {
     boundary "Publication\nDetailView" as PublicationDetailViewAnalysis
     entity "Publication" as PublicationAnalysis
     control "CreatePublication\nController" as CreatePublicationControllerAnalysis
@@ -12,35 +12,29 @@ package Analysis{
     CreatePublicationControllerAnalysis --> PublicationAnalysis
 }
 
-package Design{
-    package backend <<django:5.0.2>>{
-        boundary "create_publication" as PublicationDetailView << DjangoTemplates >>
-        boundary "layout" as mainLayoutProfileView << DjangoTemplates >>
-        boundary "widget_tweaks" as widgetTweaks << django-widget-tweaks >>
-        boundary "tailwind_tags" as tailwindTags << django-tailwind >>
-        control urls << Python >>
-        control "<b>@login_required</b>\npublication_views.\nregister_publication" as CreatePublicationController << Python >>
-        entity PublicationForm << Python >>
-        entity Publication << Python >>
+package Design {
+    package backend {
+        boundary "Create.cshtml" as PublicationDetailView << RazorView >>
+        boundary "_Layout.cshtml" as mainLayoutProfileView << RazorView >>
+        control "PublicationController\n[HttpPost]\nCreate" as CreatePublicationController << C# >>
+        entity "CreatePublicationViewModel" << C# >>
+        entity "Publication" << C# >>
     }
 
     package frontend {
-        boundary "create_publication" as PublicationHtml << HTML >>
-        boundary "tailwind_css" as outputCss << CSS >>
+        boundary "CreatePublication" as PublicationHtml << HTML >>
+        boundary "site_css" as outputCss << CSS >>
         control previewImage << JavaScript >>
     }
 
     PublicationHtml -d-> outputCss
     PublicationHtml *-d- previewImage
-    PublicationHtml ..> urls
-    urls --> CreatePublicationController
+    PublicationHtml ..> CreatePublicationController
     CreatePublicationController -d-> PublicationDetailView
     PublicationDetailView -d-> mainLayoutProfileView: extends
-    mainLayoutProfileView -> tailwindTags: load
-    PublicationDetailView -> widgetTweaks: load
 
-    CreatePublicationController -d-> PublicationForm
-    PublicationForm -d-> Publication
+    CreatePublicationController -d-> CreatePublicationViewModel
+    CreatePublicationViewModel -d-> Publication
 }
 
 'trace
@@ -48,12 +42,10 @@ PublicationDetailViewAnalysis .[#green]r.> PublicationHtml : <font color=green><
 PublicationDetailViewAnalysis .[#green].> outputCss : <font color=green><<trace>></font>
 PublicationDetailViewAnalysis .[#green].> PublicationDetailView : <font color=green><<trace>></font>
 
-CreatePublicationControllerAnalysis .[#coral].> urls : <font color=coral><<trace>></font>
 CreatePublicationControllerAnalysis .[#coral].> CreatePublicationController : <font color=coral><<trace>></font>
 CreatePublicationControllerAnalysis .[#coral].> previewImage : <font color=coral><<trace>></font>
 
-PublicationAnalysis .[#3cdfff].> PublicationForm : <font color=3cdfff><<trace>></font>
+PublicationAnalysis .[#3cdfff].> CreatePublicationViewModel : <font color=3cdfff><<trace>></font>
 PublicationAnalysis .[#3cdfff].> Publication : <font color=3cdfff><<trace>></font>
-
 
 @enduml

@@ -28,6 +28,8 @@ entity Publication << Python >>
 participant "Template" as template << middleware >>
 boundary "create_publication" as PublicationDetailView << DjangoTemplates >>
 
+database postgresql
+
 
 UserReg -> PublicationHtml: image
 activate PublicationHtml
@@ -74,6 +76,7 @@ alt valid
     CreatePublicationController -> PublicationForm: save()
     CreatePublicationController -> Publication: set(author_id)
     CreatePublicationController -> Publication: save()
+    Publication -> postgresql: save_table()
     CreatePublicationController -> template: redirect("home")
     activate template
 else not valid

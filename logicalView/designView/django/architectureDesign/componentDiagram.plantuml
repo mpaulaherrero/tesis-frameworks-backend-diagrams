@@ -13,7 +13,7 @@ node "Client" as pc {
 node "Server" as server {
     component "Web Server" as webserver
     component "wsgi" as wsgi
-    component "python_components" as components
+    component "python-site-packages" as components
     component django
     component backend #f2dcdb {
         component proyect #f2dcdb
@@ -36,10 +36,18 @@ node "Server" as server {
 'media -[hidden]r- staticfiles
 
 node "Database Server" as dbServer {
-    component "SQLite" as sqplite
+    component "PostgreSQL" as postgresql
+}
+
+node "SMTP Server" as smtpServer {
+ component "smtp.gmail.com" as smtp
 }
 
 browser <..[#OrangeRed]r..> webserver: <font color=OrangeRed>HTTP</font>
-proyect <.[#OrangeRed].>  sqplite: <font color=OrangeRed>Intranet</font>
+app <.[#OrangeRed].>  postgresql: <font color=OrangeRed>Intranet</font>
+app <.[#OrangeRed]u.>  smtp: <font color=OrangeRed>HTTP</font>
+
+'diseño
+dbServer -[hidden]d- smtpServer
 
 @enduml

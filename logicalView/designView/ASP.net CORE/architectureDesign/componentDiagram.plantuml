@@ -12,20 +12,18 @@ node "Client" as pc {
 
 node "Server" as server {
     component "Web Server" as webserver
-    component "nodeJS" as nodeJS
-    component "node_modules" as nodeModules
-    component "expressJS" as expressJS
+    component "ASP.NET Core" as aspnetcore
+    component "NuGet Packages" as nugetPackages
     component pg
     component backend #f2dcdb {
-        component app #f2dcdb
-        component public #f2dcdb
+        component app #f2dcdb 
+        component wwwroot #f2dcdb
     }
 
-    webserver <-d-> nodeJS
-    nodeJS <--> backend
-    nodeModules *-d-> expressJS
-    nodeModules *-d-> pg
-    app -d-> nodeModules
+    webserver <-d-> aspnetcore
+    aspnetcore <--> backend
+    nugetPackages *-d-> pg
+    app -d-> nugetPackages
 }
 
 node "Database Server" as dbServer {
@@ -40,6 +38,4 @@ browser <..[#OrangeRed]r..> webserver: <font color=OrangeRed>HTTP</font>
 app <.[#OrangeRed]d.>  postgresql: <font color=OrangeRed>Intranet</font>
 app <.[#OrangeRed]u.>  smtp: <font color=OrangeRed>HTTP</font>
 
-'diseño
-dbServer -[hidden]d- smtpServer
 @enduml
