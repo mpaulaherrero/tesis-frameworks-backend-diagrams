@@ -1,22 +1,14 @@
-@startuml
+@startuml Package Diagram for ASP.NET Core
 skinparam style strictuml
 allow_mixing
 
-package "NuGet Packages" as nugetPackages {
-    component "Microsoft.EntityFrameworkCore" as efcore
-    component "Microsoft.AspNetCore.Mvc" as mvc
-    component "Microsoft.Extensions.Configuration" as config
-    component "Microsoft.Extensions.Logging" as logging
-    component "Npgsql.EntityFrameworkCore.PostgreSQL" as npgsql
-}
-
-package project {
+package project <<ASP.NET Core:8.0.401>>{
     class "Program.cs" as program <<csharp>>
     class "Startup.cs" as startup <<csharp>>
     class "appsettings.json" as appsettings <<config>>
 }
 
-package backend {
+package backend <<ASP.NET Core:8.0.401>>{
     package Controllers #bisque {
         ' Controladores
     }
@@ -37,6 +29,16 @@ package backend {
     }
 }
 
+package "NuGet Packages" as nugetPackages {
+    component "Microsoft.EntityFrameworkCore" as efcore
+    component "Microsoft.AspNetCore.Mvc" as mvc
+    component "Microsoft.Extensions.Configuration" as config
+    component "Microsoft.Extensions.Logging" as logging
+    component "Npgsql.EntityFrameworkCore.PostgreSQL" as npgsql
+    component "TailwindCSS" as tailwind
+    component "DotNetEnv" as dotnetenv
+}
+
 program .d.> startup
 startup ..> config
 startup ..> logging
@@ -44,6 +46,11 @@ startup .d.> appsettings: <<config>>
 startup .d.> appsettingsDev: <<config>>
 appsettings ..> npgsql
 appsettingsDev ..> npgsql
+wwwroot ..> tailwind 
+appsettings ..> dotnetenv
+dotnetenv -[hidden]u- tailwind
+config -[hidden]u- tailwind
+logging -[hidden]u- tailwind
 
 'diseño
 appsettings -[hidden]d- appsettingsDev
