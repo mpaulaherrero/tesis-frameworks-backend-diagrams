@@ -19,3 +19,4 @@ UC18 - Bloquear usuario
 UC19 - Eliminar usuario
 UC20 - Bloquear publicación
 UC21 - Eliminar publicación
+UC22 - Buscar usuarios

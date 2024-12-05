@@ -5,7 +5,7 @@ skinparam rectangle {
     BackgroundColor #ddd
 }
 
-rectangle "Landing page" as home <<screen>>
+rectangle "Principal" as home <<screen>>
 rectangle "Crear/Editar publicacion" as createEditPublication <<screen>>
 rectangle "Detalle de publicacion" as readPublication <<screen>>
 rectangle "Registro" as register <<screen>>
@@ -16,31 +16,32 @@ rectangle "Restaurar contraseña" as resetPassword <<screen>>
 rectangle "Administración" as adminPage <<screen>>
 
 
-usecase "Registrar usuario" as UC1
-usecase "Iniciar Sesión" as UC2
-usecase "Cerrar Sesión" as UC3
-usecase "Recuperar contraseña" as UC4
-usecase "Ver perfil" as UC5
-usecase "Editar perfil" as UC6
+usecase "UC1 - Registrar usuario" as UC1
+usecase "UC2 - Iniciar Sesión" as UC2
+usecase "UC3 - Cerrar Sesión" as UC3
+usecase "UC4 - Recuperar contraseña" as UC4
+usecase "UC5 - Ver perfil" as UC5
+usecase "UC6 - Editar perfil" as UC6
 
-usecase "Crear Publicación" as UC7
-usecase "Listar publicaciones" as UC8
-usecase "Editar publicación" as UC9
+usecase "UC7 - Crear Publicación" as UC7
+usecase "UC8 - Listar publicaciones" as UC8
+usecase "UC9 - Editar publicación" as UC9
 
-usecase "Crear comentario" as UC10
-usecase "Listar comentarios" as UC11
-usecase "Editar comentario" as UC12
-usecase "Eliminar comentario" as UC13
+usecase "UC10 - Crear comentario" as UC10
+usecase "UC11 - Listar comentarios" as UC11
+usecase "UC12 - Editar comentario" as UC12
+usecase "UC13 - Eliminar comentario" as UC13
 
-usecase "Ver publicación" as UC14
+usecase "UC14 - Ver publicación" as UC14
 
-usecase "Visualizar estadísticas" as UC15
-usecase "Ver usuario" as UC16
-usecase "Editar usuario" as UC17
-usecase "Bloquear usuario" as UC18
-usecase "Eliminar usuario" as UC19
-usecase "Bloquear publicación" as UC20
-usecase "Eliminar publicación" as UC21
+usecase "UC15 - Visualizar estadísticas" as UC15
+usecase "UC16 - Ver usuario" as UC16
+usecase "UC17 - Editar usuario" as UC17
+usecase "UC18 - Bloquear usuario" as UC18
+usecase "UC19 - Eliminar usuario" as UC19
+usecase "UC20 - Bloquear publicación" as UC20
+usecase "UC21 - Eliminar publicación" as UC21
+usecase "UC22 - Buscar Usuarios" as UC22
 
 
 UC1 <.. register: <<trace>>
@@ -81,6 +82,6 @@ UC18 <... adminPage: <<trace>>
 UC19 <... adminPage: <<trace>>
 UC20 <... adminPage: <<trace>>
 UC21 <... adminPage: <<trace>>
-
+UC22 <... adminPage: <<trace>>
 
 @enduml
