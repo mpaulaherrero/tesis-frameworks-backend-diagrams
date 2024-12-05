@@ -60,7 +60,7 @@ Los prototipos de las pantallas las podrá ver en: [prototipo de pantallas](scen
 ### Arquitectura de análisis
 ![arquitectura de análisis](logicalView/analisysView/architectureAnalisys/analysisPackageDiagram/analysisPackageDiagram.svg)
 
-### Realización de análisis de casos de uso OJO
+### Realización de análisis de casos de uso
 
 #### Diagrama de clases de análisis de UC7 – Crear Publicación
 ![Diagrama de clases de análisis de UC7](logicalView/analisysView/usecaseAnalisys/analysisClassDiagramUC7/analysisClassDiagramUC7.svg)
