@@ -27,22 +27,22 @@ La aplicación esta requisitada y diseñada usando la metodología UP. Al ser un
 ## Modelo de Casos de uso
 
 ### Usuario no registrado
-![modelo caso de uso usuario no registrado](scenariosView/usecaseModel/useCaseDiagramAnonymous/baseApp.svg)
+![modelo caso de uso usuario no registrado](scenariosView/useCaseModel/useCaseDiagramAnonymous/baseApp.svg)
 
 ### Usuario registrado
-![modelo caso de uso usuario registrado](scenariosView/usecaseModel/useCaseDiagramUser/baseApp.svg)
+![modelo caso de uso usuario registrado](scenariosView/useCaseModel/useCaseDiagramUser/baseApp.svg)
 
 ### Usuario administrador
-![modelo caso de uso usuario administrador](scenariosView/usecaseModel/useCaseDiagramAdmin/baseApp.svg)
+![modelo caso de uso usuario administrador](scenariosView/useCaseModel/useCaseDiagramAdmin/baseApp.svg)
 
 ### Especificaciones de casos de uso
 La descripción de cada caso de uso lo podrá ver en: [especificaciones de los casos de uso](scenariosView/usecaseModel/useCaseSpecifications.md)
 
 ### Prototipo de pantallas
-Los prototipos de las pantallas las podrá ver en: [prototipo de pantallas](scenariosView/usecaseModel/prototype/prototype.md)
+Los prototipos de las pantallas las podrá ver en: [prototipo de pantallas](scenariosView/useCaseModel/prototype/prototype.md)
 
 ### Trazabilidad entre pantallas y casos de uso
-| <img src="scenariosView/usecaseModel/prototypeUseCaseTrace/prototypeTrace.svg" width=80% style="background-color:white;"> |
+| <img src="scenariosView/useCaseModel/prototypeUseCaseTrace/prototypeTrace.svg" width=80% style="background-color:white;"> |
 | :---: |
 
 ## Modelo de Análisis
