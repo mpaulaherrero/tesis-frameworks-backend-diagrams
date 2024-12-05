@@ -36,7 +36,7 @@ La aplicación esta requisitada y diseñada usando la metodología UP. Al ser un
 ![modelo caso de uso usuario administrador](scenariosView/useCaseModel/useCaseDiagramAdmin/baseApp.svg)
 
 ### Especificaciones de casos de uso
-La descripción de cada caso de uso lo podrá ver en: [especificaciones de los casos de uso](scenariosView/usecaseModel/useCaseSpecifications.md)
+La descripción de cada caso de uso lo podrá ver en: [especificaciones de los casos de uso](scenariosView/useCaseModel/useCaseSpecifications.md)
 
 ### Prototipo de pantallas
 Los prototipos de las pantallas las podrá ver en: [prototipo de pantallas](scenariosView/useCaseModel/prototype/prototype.md)
