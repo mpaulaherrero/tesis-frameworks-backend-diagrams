@@ -40,8 +40,8 @@
 
 ## Pantalla de recuperar contraseña
 
-| <img src="07 01 Recuperar contraseña.png" width=80% style="background-color:white;"> |
+| <img src="07 01 Recuperar contrasenia.png" width=80% style="background-color:white;"> |
 | :---: |
 
-| <img src="07 02 Restarurar contraseña.png" width=80% style="background-color:white;"> |
+| <img src="07 02 Restarurar contrasenia.png" width=80% style="background-color:white;"> |
 | :---: |
