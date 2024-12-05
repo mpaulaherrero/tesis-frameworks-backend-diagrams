@@ -1,4 +1,4 @@
-@startuml
+@startuml django seq diagram
 skinparam style strictuml
 skinparam defaultFontSize 11
 skinparam stereotypePosition top

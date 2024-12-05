@@ -1,0 +1,55 @@
+@startuml
+skinparam style strictuml
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+package Analysis{
+    boundary "Publication\nDetailView" as PublicationDetailViewAnalysis
+    entity "Publication" as PublicationAnalysis
+    control "CreatePublication\nController" as CreatePublicationControllerAnalysis
+
+    PublicationDetailViewAnalysis --> CreatePublicationControllerAnalysis
+    CreatePublicationControllerAnalysis --> PublicationAnalysis
+}
+
+package Design{
+    package backend {
+        boundary "home.html.erb" as PublicationDetailView << html.erb >>
+        boundary "layout.html.erb" as mainLayoutProfileView << html.erb >>
+        control "PublicationsController" as PublicationController << RB >>
+        control "routes.rb" as Router << RB >>
+        control protect_route << middleware >>
+        entity Publication << RB >>
+    }
+    package frontend {
+        boundary "publication" as PublicationHtml << HTML >>
+        boundary "tailwind" as outputCss << CSS >>
+        control script << JavaScript >>
+    }
+
+    PublicationHtml -d-> outputCss
+    PublicationHtml -d-> script
+    PublicationHtml .r.> Router
+    Router -> protect_route
+    Router -d-> PublicationController
+    PublicationController -d-> PublicationDetailView
+    PublicationController -d-> Publication
+    PublicationDetailView -d-> mainLayoutProfileView: extends
+
+}
+
+'trace
+PublicationDetailViewAnalysis .[#green].> PublicationHtml : <font color=green><<trace>></font>
+PublicationDetailViewAnalysis .[#green].> script : <font color=green><<trace>></font>
+PublicationDetailViewAnalysis .[#green].> outputCss : <font color=green><<trace>></font>
+PublicationDetailViewAnalysis .[#green].> PublicationDetailView : <font color=green><<trace>></font>
+
+CreatePublicationControllerAnalysis .[#coral].> Router : <font color=coral><<trace>></font>
+CreatePublicationControllerAnalysis .[#coral].> PublicationController : <font color=coral><<trace>></font>
+CreatePublicationControllerAnalysis .[#coral].> protect_route : <font color=coral><<trace>></font>
+' CreatePublicationControllerAnalysis .[#coral].> uploadSingle : <font color=coral><<trace>></font>
+' CreatePublicationControllerAnalysis .[#coral].> script : <font color=coral><<trace>></font>
+
+PublicationAnalysis .[#3cdfff].> Publication : <font color=3cdfff><<trace>></font>
+
+@enduml

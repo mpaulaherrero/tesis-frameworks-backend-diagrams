@@ -1,0 +1,80 @@
+@startuml
+skinparam style strictuml
+skinparam defaultFontSize 11
+skinparam stereotypePosition top
+
+actor "Registered\nUser" as UserReg
+
+boundary "create.html.erb" as PublicationHtml <<  HMTL.ERB  >>
+
+participant "config/application.rb" as index << RB >>
+
+participant "RailsMiddleware" as RailsMiddleware << middleware >>
+
+
+control Router << RB >>
+
+control protect_routes << middleware >>
+' control "upload.single" as uploadSingle << middleware >>
+
+control "PublicationController" as CreatePublicationController << RB >>
+control "ApplicationRecord" as Validator <<RB>>
+entity "res:response" as response << RB >>
+boundary "Publication" as PublicationDetailView << PUG >>
+entity PublicationModel << RB >>
+entity UserModel << RB >>
+
+UserReg -> PublicationHtml: image
+activate PublicationHtml
+UserReg -> PublicationHtml: content, title
+UserReg -> PublicationHtml: submit()
+PublicationHtml -> index: http_request(POST, \n/publication, body)
+deactivate PublicationHtml
+activate index
+index -> RailsMiddleware: Request
+deactivate index
+
+activate RailsMiddleware
+RailsMiddleware -> Router: Request
+deactivate RailsMiddleware
+
+activate Router
+Router -> Router: post("/publication", \nreq, res)
+Router -> protect_routes: Request
+deactivate Router
+activate protect_routes
+    protect_routes -> CreatePublicationController : Request
+deactivate protect_routes
+
+activate CreatePublicationController
+CreatePublicationController -> Validator: (req.post)
+CreatePublicationController -> PublicationModel: @publication.save()
+alt request
+    ' CreatePublicationController -> PublicationModel: store(title,image,content,autor_id,blocked)
+    CreatePublicationController -> response: status(200)
+    activate response
+    CreatePublicationController -> response: render("/", success)
+    response -> PublicationDetailView: render(options)
+    deactivate response
+else error
+    CreatePublicationController -> response: status: :unprocessable_entity
+    activate response
+    CreatePublicationController -> response: render("publication")
+    response -> PublicationDetailView: render(options)
+    deactivate response
+end
+
+CreatePublicationController --> Router: response
+deactivate CreatePublicationController
+activate Router
+Router --> RailsMiddleware: response
+deactivate Router
+activate RailsMiddleware
+RailsMiddleware -> index: response
+deactivate RailsMiddleware
+activate index
+index -> PublicationHtml: http_response(\nstatus, body)
+deactivate index
+' app --> PublicationHtml: http_response(\nstatus, body)
+
+@enduml

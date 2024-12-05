@@ -1,0 +1,85 @@
+@startuml
+skinparam style strictuml
+skinparam defaultFontSize 11
+skinparam stereotypePosition top
+
+actor "Registered\nUser" as UserReg
+
+boundary "create.blade.php" as PublicationHtml << BLADE >>
+
+participant "public/index.php" as index << PHP >>
+participant "kernel HTTP" as kernel << PHP >>
+participant "GlobalMiddleware" as GlobalMiddleware << middleware >>
+
+
+control Router << PHP >>
+
+control auth << middleware >>
+' control "upload.single" as uploadSingle << middleware >>
+
+control "PublicationController" as CreatePublicationController << PHP >>
+control "Illuminate\nValidator" as Validator <<PHP>>
+entity "res:response" as response << PHP >>
+boundary "Publication" as PublicationDetailView << PUG >>
+entity PublicationModel << PHP >>
+entity UserModel << PHP >>
+
+UserReg -> PublicationHtml: image
+activate PublicationHtml
+UserReg -> PublicationHtml: content, title
+UserReg -> PublicationHtml: submit()
+PublicationHtml -> index: http_request(POST, \n/publication, body)
+deactivate PublicationHtml
+activate index
+index -> kernel: (req, res)
+deactivate index
+activate kernel
+kernel -> GlobalMiddleware: (req, res)
+deactivate kernel
+activate GlobalMiddleware
+GlobalMiddleware -> Router: (req, res)
+deactivate GlobalMiddleware
+
+activate Router
+Router -> Router: post("/publication", \nreq, res)
+Router -> auth: (req, res)
+deactivate Router
+activate auth
+    auth -> CreatePublicationController : (req, res)
+deactivate auth
+
+activate CreatePublicationController
+CreatePublicationController -> Validator: (req.post)
+CreatePublicationController -> Validator: $validator->fails()
+alt request
+    CreatePublicationController -> PublicationModel: store(title,image,content,autor_id,blocked)
+    CreatePublicationController -> response: status(200)
+    activate response
+    CreatePublicationController -> response: render("/", success)
+    response -> PublicationDetailView: render(options)
+    deactivate response
+else error
+    CreatePublicationController -> response: status(400)
+    activate response
+    CreatePublicationController -> response: render("publication")
+    response -> PublicationDetailView: render(options)
+    deactivate response
+end
+
+CreatePublicationController --> Router: response
+deactivate CreatePublicationController
+activate Router
+Router --> GlobalMiddleware: response
+deactivate Router
+activate GlobalMiddleware
+GlobalMiddleware -> kernel: response
+deactivate GlobalMiddleware
+activate kernel
+kernel -> index: response
+deactivate kernel
+activate index
+index -> PublicationHtml: http_response(\nstatus, body)
+deactivate index
+' app --> PublicationHtml: http_response(\nstatus, body)
+
+@enduml

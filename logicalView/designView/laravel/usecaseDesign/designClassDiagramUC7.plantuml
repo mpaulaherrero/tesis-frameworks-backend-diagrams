@@ -1,0 +1,34 @@
+@startuml
+skinparam style strictuml
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Registered\nUser" as UserReg
+
+' This is a comment on a single line
+package backend {
+    boundary "create.blade" as PublicationDetailView << BLADE >>
+    boundary "layput.blade" as mainLayoutProfileView << BLADE >>
+    control "PublicationController" as PublicationController << PHP >>
+    control "web.php" << PHP >>
+    control auth << middleware >>
+    entity Publication << PHP >>
+}
+
+package frontend {
+    boundary "publication" as PublicationHtml << HTML >>
+    boundary "tailwind" as outputCss << CSS >>
+    control script << JavaScript >>
+}
+
+UserReg .r.> PublicationHtml
+PublicationHtml -d-> outputCss
+PublicationHtml -d-> script
+PublicationHtml .r.> "web.php"
+"web.php" -> auth
+"web.php" -d-> PublicationController
+PublicationController -d-> PublicationDetailView
+PublicationController -d-> Publication
+PublicationDetailView -d-> mainLayoutProfileView: extends
+
+@enduml

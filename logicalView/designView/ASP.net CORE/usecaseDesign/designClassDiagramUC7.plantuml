@@ -1,0 +1,32 @@
+@startuml
+skinparam style strictuml
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Registered\nUser" as UserReg
+
+package backend {
+    boundary "Create.cshtml" as PublicationDetailView << RazorView >>
+    boundary "_Layout.cshtml" as mainLayoutProfileView << RazorView >>
+    control "PublicationController\n[HttpPost]\nCreate" as CreatePublicationController << C# >>
+    entity "CreatePublicationViewModel" << C# >>
+    entity "Publication" << C# >>
+}
+
+package frontend {
+    boundary "CreatePublication" as PublicationHtml << HTML >>
+    boundary "site_css" as outputCss << CSS >>
+    control previewImage << JavaScript >>
+}
+
+UserReg .r.> PublicationHtml
+PublicationHtml -d-> outputCss
+PublicationHtml *-d- previewImage
+PublicationHtml .r.> CreatePublicationController
+CreatePublicationController -d-> PublicationDetailView
+PublicationDetailView -d-> mainLayoutProfileView: extends
+
+CreatePublicationController -d-> CreatePublicationViewModel
+CreatePublicationViewModel -d-> Publication
+
+@enduml

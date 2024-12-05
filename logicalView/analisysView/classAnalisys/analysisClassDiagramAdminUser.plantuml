@@ -16,7 +16,7 @@ control "ViewUser\nController" as ViewUserController
 control "EditUser\nController" as EditUserController
 control "BlockUser\nController" as BlockUserController
 control "DeleteUser\nController" as DeleteUserController
-control "SearchUser\nController" as SearchUserController
+' control "SearchUser\nController" as SearchUserController
 control "BlockPost\nController" as BlockPostController
 control "DeletePost\nController" as DeletePostController
 
@@ -27,7 +27,7 @@ AdminPageView --> ViewUserController
 AdminPageView --> EditUserController
 AdminPageView --> BlockUserController
 AdminPageView --> DeleteUserController
-AdminPageView --> SearchUserController
+' AdminPageView --> SearchUserController
 AdminPageView --> BlockPostController
 AdminPageView --> DeletePostController
 
@@ -36,7 +36,7 @@ ViewUserController  --> User
 EditUserController  --> User
 BlockUserController  --> User
 DeleteUserController  --> User
-SearchUserController  --> User
+' SearchUserController  --> User
 
 ViewStatisticsController --> Publication
 BlockPostController  --> Publication

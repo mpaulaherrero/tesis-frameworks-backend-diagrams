@@ -16,7 +16,7 @@ rectangle "Aplicación Base" {
     usecase "UC19 - Eliminar usuario" as UC19
     usecase "UC20 - Bloquear publicación" as UC20
     usecase "UC21 - Eliminar publicación" as UC21
-    usecase "UC22 - Buscar usuario" as UC22
+    ' usecase "UC22 - Buscar usuario" as UC22
 }
 
 Admin -- UC2
@@ -28,5 +28,5 @@ Admin -- UC18
 Admin -- UC19
 Admin -- UC20
 Admin -- UC21
-Admin -- UC22
+' Admin -- UC22
 @enduml

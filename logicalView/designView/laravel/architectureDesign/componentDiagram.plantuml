@@ -1,0 +1,40 @@
+@startuml architecture_design
+skinparam ComponentBackgroundColor white
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+node "Client" as pc {
+    component "web browser" as browser
+    component frontend #f2dcdb
+    browser *--> frontend
+}
+
+node "Server" as server {
+    component "Apache/Nginx" as webserver
+    component laravel
+    component passport
+    component packages
+    component backend #f2dcdb {
+        component "http kernel" as kernel #f2dcdb
+        component "public/index.php" as index #f2dcdb
+        component config #f2dcdb
+        component app #f2dcdb
+        component resources #f2dcdb
+        component public #f2dcdb
+    }
+
+    webserver -d-> index
+    ' artisan <-d-> backend
+    packages *-d-> laravel
+    packages *-d-> passport
+    app -d-> packages
+}
+
+node "Database Server" as dbServer {
+    component "Postgres" as postgres
+}
+
+browser <..[#OrangeRed]r..> webserver: <font color=OrangeRed>HTTP</font>
+app <.[#OrangeRed].>  postgres: <font color=OrangeRed>Intranet</font>
+
+@enduml

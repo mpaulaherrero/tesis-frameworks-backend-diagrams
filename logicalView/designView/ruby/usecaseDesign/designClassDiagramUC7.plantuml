@@ -1,0 +1,34 @@
+@startuml
+skinparam style strictuml
+skinparam defaultTextAlignment center
+skinparam defaultFontSize 11
+
+actor "Registered\nUser" as UserReg
+
+' This is a comment on a single line
+package backend {
+    boundary "home.html.erb" as PublicationDetailView << html.erb >>
+    boundary "layout.html.erb" as mainLayoutProfileView << html.erb >>
+    control "PublicationsController" as PublicationsController << RB >>
+    control "routes.rb" << RB >>
+    control protect_route << middleware >>
+    entity Publication << RB >>
+}
+
+package frontend {
+    boundary "publication" as PublicationHtml << HTML >>
+    boundary "tailwind" as outputCss << CSS >>
+    control script << JavaScript >>
+}
+
+UserReg .r.> PublicationHtml
+PublicationHtml -d-> outputCss
+PublicationHtml -d-> script
+PublicationHtml .r.> "routes.rb"
+"routes.rb" -> protect_route
+"routes.rb" -d-> PublicationsController
+PublicationsController -d-> PublicationDetailView
+PublicationsController -d-> Publication
+PublicationDetailView -d-> mainLayoutProfileView: extends
+
+@enduml

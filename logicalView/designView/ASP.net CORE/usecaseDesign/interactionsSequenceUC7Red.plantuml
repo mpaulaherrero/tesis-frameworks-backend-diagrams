@@ -1,0 +1,80 @@
+@startuml
+skinparam style strictuml
+skinparam defaultFontSize 11
+skinparam stereotypePosition top
+
+actor "Registered\nUser" as UserReg
+
+boundary "CreatePublication" as PublicationHtml << HTML >>
+
+participant "Kestrel" as kestrel << ASP.NET Core >>
+
+participant "Security\nHSTS\nHTTPS Redirection\nStatic Files\nRouting\nAntiforgery" as md1 << middlewares >>
+participant "Authentication" as md5 << middleware >>
+participant "Authorization" as md6 << middleware >>
+
+control "Endpoint\nRouting" as routing << C# >>
+participant "MVC" as mvc << middleware >>
+
+control "PublicationController\n[HttpPost]\nCreate" as CreatePublicationController << C# >>
+
+entity "CreatePublicationViewModel" << C# >>
+entity "Publication" << C# >>
+
+participant "View" as view << middleware >>
+boundary "Create.cshtml" as PublicationDetailView << RazorView >>
+
+UserReg -> PublicationHtml: image
+activate PublicationHtml
+UserReg -> PublicationHtml: content, title
+UserReg -> PublicationHtml: submit()
+PublicationHtml -> kestrel: http_request(POST,\n/Create,\nbody)
+deactivate PublicationHtml
+activate kestrel
+kestrel -> md1: (request)
+deactivate kestrel
+activate md1
+md1 -> md5: (request)
+deactivate md1
+activate md5
+md5 -> md6: (request)
+deactivate md5
+activate md6
+md6 -> routing: (request)
+deactivate md6
+activate routing
+routing -> mvc : request.POST,\n/Create,\nrequest.body]
+deactivate routing
+activate mvc
+mvc -> CreatePublicationController: request.POST,\n/Create,\n.request.body]
+deactivate mvc
+activate CreatePublicationController
+CreatePublicationController -> CreatePublicationViewModel: (request.POST,\nrequest.FILES)
+CreatePublicationViewModel -> Publication: title,\nimage,\ncontent
+CreatePublicationController -> CreatePublicationViewModel: is_valid()
+alt valid
+    CreatePublicationController -> CreatePublicationViewModel: save()
+    CreatePublicationController -> Publication: set(author_id)
+    CreatePublicationController -> Publication: save()
+    CreatePublicationController -> view: redirect("home")
+    activate view
+else not valid
+    CreatePublicationController -> view: render(request,\n"Create.cshtml",\n {"model": model})
+    view -> PublicationDetailView : render()
+    deactivate CreatePublicationController
+end
+view --> md6: (response)
+deactivate view
+activate md6
+md6 --> md5: (response)
+deactivate md6
+activate md5
+md5 --> md1: (response)
+deactivate md5
+activate md1
+md1 --> kestrel: (response)
+deactivate md1
+activate kestrel
+kestrel --> PublicationHtml: http_response(\nstatus, body)
+deactivate kestrel
+@enduml
