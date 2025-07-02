@@ -73,7 +73,31 @@ Los prototipos de las pantallas las podrá ver en: [prototipo de pantallas](scen
 ### Arquitectura de Sistema
 ![arquitectura de sistema de Framework Express](logicalView/designView/express/architectureDesign/componentDiagram/architecture_design.svg)
 
+### Arquitectura de Software
+![arquitectura de software de Framework Express](logicalView/designView/express/packageDesign/designPackageDiagram/designPackageDiagram.svg)
+
+### Diagrama de clases de diseño UC7 – Crear Publicación
+![diagrama de clases de diseño de Framework Express](logicalView/designView/express/usecaseDesign/designClassDiagramUC7/designClassDiagramUC7.svg)
+
+### Traza de Diagrama clases de análisis y diseño UC7 – Crear Publicación
+![Traza de Diagrama clases de análisis y diseño de Framework Express](logicalView/designView/express/usecaseDesign/designClassDiagramUC7TraceAnalisysClass/designClassDiagramUC7TraceAnalisysClass.svg)
+
+### Diagrama de secuencia UC7 – Crear Publicación
+![diagrama de secuencia de Framework Express](logicalView/designView/express/usecaseDesign/interactionsSequenceUC7Reducido/interactionsSequenceUC7Reducido.svg)
+
 ## Modelo de Diseño Framework Django
 
 ### Arquitectura de Sistema
 ![arquitectura de sistema de Framework Django](logicalView/designView/django/architectureDesign/componentDiagram/architecture_design.svg)
+
+### Arquitectura de Software
+![arquitectura de software de Framework Django](logicalView/designView/django/packageDesign/designPackageDiagram/designPackageDiagram.svg)
+
+### Diagrama de clases de diseño UC7 – Crear Publicación
+![diagrama de clases de diseño de Framework Django](logicalView/designView/django/usecaseDesign/designClassDiagramUC7/designClassDiagramUC7.svg)
+
+### Traza de Diagrama clases de análisis y diseño UC7 – Crear Publicación
+![Traza de Diagrama clases de análisis y diseño de Framework Django](logicalView/designView/django/usecaseDesign/designClassDiagramUC7TraceAnalisysClass/designClassDiagramUC7TraceAnalisysClass.svg)
+
+### Diagrama de secuencia UC7 – Crear Publicación
+![diagrama de secuencia de Framework Django](logicalView/designView/django/usecaseDesign/interactionsSequenceUC7Red/interactionsSequenceUC7Red.svg)
