@@ -72,3 +72,8 @@ Los prototipos de las pantallas las podrá ver en: [prototipo de pantallas](scen
 
 ### Arquitectura de Sistema
 ![arquitectura de sistema de Framework Express](logicalView/designView/express/architectureDesign/componentDiagram/architecture_design.svg)
+
+## Modelo de Diseño Framework Django
+
+### Arquitectura de Sistema
+![arquitectura de sistema de Framework Django](logicalView/designView/django/architectureDesign/componentDiagram/architecture_design.svg)
