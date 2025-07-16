@@ -5,7 +5,7 @@ skinparam defaultFontSize 11
 
 actor "Registered\nUser" as UserReg
 
-package backend {
+package backend <<ASP.NET Core:8.0.401>>{
     boundary "Create.cshtml" as PublicationDetailView << RazorView >>
     boundary "_Layout.cshtml" as mainLayoutProfileView << RazorView >>
     control "PublicationController\n[HttpPost]\nCreate" as CreatePublicationController << C# >>

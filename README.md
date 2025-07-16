@@ -101,3 +101,54 @@ Los prototipos de las pantallas las podrá ver en: [prototipo de pantallas](scen
 
 ### Diagrama de secuencia UC7 – Crear Publicación
 ![diagrama de secuencia de Framework Django](logicalView/designView/django/usecaseDesign/interactionsSequenceUC7Red/interactionsSequenceUC7Red.svg)
+
+## Modelo de Diseño Framework ASP.net CORE
+
+### Arquitectura de Sistema
+![arquitectura de sistema de Framework ASP.net CORE](logicalView/designView/ASP.net%20CORE/architectureDesign/componentDiagram/architecture_design.svg)
+
+### Arquitectura de Software
+![arquitectura de software de Framework ASP.net CORE](logicalView/designView/ASP.net%20CORE/packageDesign/designPackageDiagram/designPackageDiagram.svg)
+
+### Diagrama de clases de diseño UC7 – Crear Publicación
+![diagrama de clases de diseño de Framework ASP.net CORE](logicalView/designView/ASP.net%20CORE/usecaseDesign/designClassDiagramUC7/designClassDiagramUC7.svg)
+
+### Traza de Diagrama clases de análisis y diseño UC7 – Crear Publicación
+![Traza de Diagrama clases de análisis y diseño de Framework ASP.net CORE](logicalView/designView/ASP.net%20CORE/usecaseDesign/designClassDiagramUC7TraceAnalisysClass/designClassDiagramUC7TraceAnalisysClass.svg)
+
+### Diagrama de secuencia UC7 – Crear Publicación
+![diagrama de secuencia de Framework ASP.net CORE](logicalView/designView/ASP.net%20CORE/usecaseDesign/interactionsSequenceUC7Red/interactionsSequenceUC7Red.svg)
+
+## Modelo de Diseño Framework Laravel
+
+### Arquitectura de Sistema
+![arquitectura de sistema de Framework Laravel](logicalView/designView/laravel/architectureDesign/componentDiagram/architecture_design.svg)
+
+### Arquitectura de Software
+![arquitectura de software de Framework Laravel](logicalView/designView/laravel/packageDesign/designPackageDiagram/designPackageDiagram.svg)
+
+### Diagrama de clases de diseño UC7 – Crear Publicación
+![diagrama de clases de diseño de Framework Laravel](logicalView/designView/laravel/usecaseDesign/designClassDiagramUC7/designClassDiagramUC7.svg)
+
+### Traza de Diagrama clases de análisis y diseño UC7 – Crear Publicación
+![Traza de Diagrama clases de análisis y diseño de Framework Laravel](logicalView/designView/laravel/usecaseDesign/designClassDiagramUC7TraceAnalisysClass/designClassDiagramUC7TraceAnalisysClass.svg)
+
+### Diagrama de secuencia UC7 – Crear Publicación
+![diagrama de secuencia de Framework Laravel](logicalView/designView/laravel/usecaseDesign/interactionsSequenceUC7Red/interactionsSequenceUC7Red.svg)
+
+## Modelo de Diseño Framework Ruby
+
+### Arquitectura de Sistema
+![arquitectura de sistema de Framework Ruby](logicalView/designView/ruby/architectureDesign/componentDiagram/architecture_design.svg)
+
+### Arquitectura de Software
+![arquitectura de software de Framework Ruby](logicalView/designView/ruby/packageDesign/designPackageDiagram/designPackageDiagram.svg)
+
+### Diagrama de clases de diseño UC7 – Crear Publicación
+![diagrama de clases de diseño de Framework Ruby](logicalView/designView/ruby/usecaseDesign/designClassDiagramUC7/designClassDiagramUC7.svg)
+
+### Traza de Diagrama clases de análisis y diseño UC7 – Crear Publicación
+![Traza de Diagrama clases de análisis y diseño de Framework Ruby](logicalView/designView/ruby/usecaseDesign/designClassDiagramUC7TraceAnalisysClass/designClassDiagramUC7TraceAnalisysClass.svg)
+
+### Diagrama de secuencia UC7 – Crear Publicación
+![diagrama de secuencia de Framework Ruby](logicalView/designView/ruby/usecaseDesign/interactionsSequenceUC7Red/interactionsSequenceUC7Red.svg)

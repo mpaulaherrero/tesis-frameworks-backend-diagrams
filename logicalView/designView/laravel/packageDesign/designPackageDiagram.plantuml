@@ -1,4 +1,4 @@
-@startuml paquete de diseño laravel
+@startuml
 skinparam style strictuml
 allow_mixing
 
@@ -6,7 +6,7 @@ package routes {
     class "web.php" as webPHP #bisque {}
 }
 
-package app {
+package app <<Laravel:11>>{
     package Http {
         package controllers #bisque {}
         package middleware #bisque {}

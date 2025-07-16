@@ -1,4 +1,4 @@
-@startuml Package Diagram for ASP.NET Core
+@startuml
 skinparam style strictuml
 allow_mixing
 

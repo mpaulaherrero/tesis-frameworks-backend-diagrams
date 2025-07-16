@@ -6,7 +6,7 @@ skinparam defaultFontSize 11
 actor "Registered\nUser" as UserReg
 
 ' This is a comment on a single line
-package backend {
+package backend <<Laravel:11>>{
     boundary "create.blade" as PublicationDetailView << BLADE >>
     boundary "layput.blade" as mainLayoutProfileView << BLADE >>
     control "PublicationController" as PublicationController << PHP >>

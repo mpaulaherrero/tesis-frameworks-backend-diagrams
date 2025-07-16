@@ -13,7 +13,7 @@ package Analysis{
 }
 
 package Design{
-    package backend {
+    package backend <<Laravel:11>>{
         boundary "create.blade" as PublicationDetailView << BLADE >>
         boundary "layput.blade" as mainLayoutProfileView << BLADE >>
         control "PublicationController" as PublicationController << PHP >>

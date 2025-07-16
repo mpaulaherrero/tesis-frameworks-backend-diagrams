@@ -6,7 +6,7 @@ skinparam defaultFontSize 11
 actor "Registered\nUser" as UserReg
 
 ' This is a comment on a single line
-package backend {
+package backend <<Rails:7.1.3>>{
     boundary "home.html.erb" as PublicationDetailView << html.erb >>
     boundary "layout.html.erb" as mainLayoutProfileView << html.erb >>
     control "PublicationsController" as PublicationsController << RB >>

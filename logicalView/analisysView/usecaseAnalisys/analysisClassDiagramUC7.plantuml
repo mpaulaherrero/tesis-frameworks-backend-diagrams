@@ -4,13 +4,22 @@ left to right direction
 skinparam defaultTextAlignment center
 skinparam defaultFontSize 11
 
-actor "Registered\nUser" as UserReg
+actor Receiver
 
-boundary "Publication\nDetailView" as PublicationDetailView
-entity Publication
-control "CreatePublication\nController" as CreatePublicationController
+boundary "New Report" as NewReportView
+entity Client
+entity Vehicle
+entity Report
+<!-- entity Repair -->
+entity Employee
+entity PreviousDamage
+entity ReportedProblem
 
-UserReg --> PublicationDetailView
-PublicationDetailView --> CreatePublicationController
-CreatePublicationController --> Publication
+control "CreateReport\nController" as CreateReportController
+
+Receiver --> NewReportView
+NewReportView --> CreateReportController
+CreateReportController --> Client
+CreateReportController --> Vehicle
+CreateReportController --> Report
 @enduml

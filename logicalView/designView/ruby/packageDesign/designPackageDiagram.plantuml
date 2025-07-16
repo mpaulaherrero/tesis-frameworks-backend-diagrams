@@ -1,4 +1,4 @@
-@startuml paquete de diseño laravel
+@startuml
 skinparam style strictuml
 allow_mixing
 
@@ -6,7 +6,7 @@ package config {
     class "routes.rb" as webPHP #bisque {}
 }
 
-package app {
+package app <<Rails:7.1.3>>{
     package controllers #bisque {}
     package models #d8f9ff {}
     package views #cefad0 {}
